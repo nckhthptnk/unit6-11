@@ -1,0 +1,2087 @@
+<!doctype html>
+<html lang="vi">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 6: Social Issues</title>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        html {
+            height: 100%;
+        }
+        
+        .flashcard {
+            perspective: 1000px;
+            cursor: pointer;
+            height: 400px;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+        
+        .flashcard-back {
+            transform: rotateY(180deg);
+        }
+        
+        .highlight {
+            background-color: #fef08a;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #92400e;
+        }
+        
+        .quiz-option {
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .quiz-option:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quiz-option.correct {
+            background-color: #86efac !important;
+            border-color: #22c55e !important;
+            color: #166534 !important;
+        }
+        
+        .quiz-option.incorrect {
+            background-color: #fca5a5 !important;
+            border-color: #ef4444 !important;
+            color: #991b1b !important;
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .grammar-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .grammar-content.active {
+            max-height: 2000px;
+        }
+        
+        .tab-button {
+            transition: all 0.3s;
+        }
+        
+        .tab-button.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .vocab-mode-btn {
+            transition: all 0.3s;
+        }
+        
+        .vocab-mode-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .vocab-mode-btn:not(.active) {
+            background-color: #6b7280;
+        }
+        
+        .vocab-mode-btn:not(.active):hover {
+            background-color: #4b5563;
+        }
+        
+        .vocab-test-question {
+            transition: all 0.3s;
+        }
+        
+        .vocab-test-option {
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .vocab-test-option:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .vocab-test-option.correct {
+            background-color: #86efac !important;
+            border-color: #22c55e !important;
+            color: #166534 !important;
+        }
+        
+        .vocab-test-option.incorrect {
+            background-color: #fca5a5 !important;
+            border-color: #ef4444 !important;
+            color: #991b1b !important;
+        }
+        
+        .vocab-test-option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        .control-button {
+            transition: all 0.2s;
+        }
+        
+        .control-button:hover {
+            transform: scale(1.05);
+        }
+        
+        .control-button:active {
+            transform: scale(0.95);
+        }
+        
+        .reading-text {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .grammar-theory {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-left: 4px solid #667eea;
+        }
+        
+        .progress-circle {
+            transform: rotate(-90deg);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 12px;
+            }
+            
+            .flashcard {
+                height: 300px;
+                max-width: 100%;
+                margin: 0 8px;
+            }
+            
+            .flashcard-front, .flashcard-back {
+                padding: 16px;
+            }
+            
+            .flashcard-front h2 {
+                font-size: 2rem !important;
+            }
+            
+            .flashcard-front p {
+                font-size: 1rem !important;
+            }
+            
+            .flashcard-back h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            .flashcard-back div {
+                font-size: 0.9rem !important;
+            }
+            
+            .reading-text {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            
+            .tab-button {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .vocab-mode-btn {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .control-button {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-cols-2.md\\:grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+            
+            .progress-circle svg {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .progress-circle circle {
+                r: 26;
+                cx: 30;
+                cy: 30;
+                stroke-dasharray: 163;
+            }
+            
+            .quiz-option, .vocab-test-option {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+            
+            .grammar-theory {
+                padding: 16px;
+            }
+            
+            .vocab-test-question {
+                padding: 16px;
+            }
+            
+            .flex.flex-col.sm\\:flex-row.justify-center.gap-4 {
+                gap: 12px;
+            }
+            
+            .flex.flex-col.sm\\:flex-row.justify-center.gap-4 .vocab-mode-btn {
+                width: 100%;
+            }
+            
+            .flex.justify-center.items-center.gap-4 {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+            
+            .text-4xl {
+                font-size: 2rem !important;
+            }
+            
+            .text-2xl {
+                font-size: 1.5rem !important;
+            }
+            
+            .text-xl {
+                font-size: 1.25rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 8px;
+            }
+            
+            .flashcard {
+                height: 280px;
+                margin: 0 4px;
+            }
+            
+            .flashcard-front, .flashcard-back {
+                padding: 12px;
+            }
+            
+            .flashcard-front h2 {
+                font-size: 1.75rem !important;
+            }
+            
+            .flashcard-front p {
+                font-size: 0.9rem !important;
+            }
+            
+            .flashcard-back h3 {
+                font-size: 1.25rem !important;
+            }
+            
+            .flashcard-back div {
+                font-size: 0.85rem !important;
+            }
+            
+            .tab-button {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .vocab-mode-btn {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .control-button {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .grid-cols-2.md\\:grid-cols-4 {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .progress-circle svg {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .progress-circle circle {
+                r: 22;
+                cx: 25;
+                cy: 25;
+                stroke-dasharray: 138;
+            }
+            
+            .progress-circle .text-lg {
+                font-size: 0.9rem !important;
+            }
+            
+            .reading-text {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            
+            .quiz-option, .vocab-test-option {
+                padding: 10px;
+                font-size: 0.85rem;
+            }
+            
+            .grammar-theory {
+                padding: 12px;
+            }
+            
+            .vocab-test-question {
+                padding: 12px;
+            }
+            
+            .text-4xl {
+                font-size: 1.75rem !important;
+            }
+            
+            .text-2xl {
+                font-size: 1.25rem !important;
+            }
+            
+            .text-xl {
+                font-size: 1.1rem !important;
+            }
+            
+            .bg-white.rounded-xl.shadow-lg.p-6 {
+                padding: 16px !important;
+            }
+            
+            .p-6 {
+                padding: 16px !important;
+            }
+            
+            .mb-8 {
+                margin-bottom: 24px !important;
+            }
+            
+            .mb-6 {
+                margin-bottom: 20px !important;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-full">
+  <div class="container mx-auto px-4 py-6 max-w-6xl"><!-- Header -->
+   <div class="text-center mb-8">
+    <div class="flex flex-col md:flex-row justify-between items-center mb-4 gap-4"><button onclick="goHome()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 order-2 md:order-1">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+      </svg> Trang chủ </button>
+     <h1 id="unit-title" class="text-4xl font-bold text-gray-800 order-1 md:order-2">Unit 6: Social Issues</h1>
+     <div class="w-20 hidden md:block order-3"></div>
+    </div>
+   </div><!-- Progress Section -->
+   <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Tiến độ học tập</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+     <div class="text-center">
+      <div class="relative w-20 h-20 mx-auto mb-3">
+       <svg class="w-20 h-20 progress-circle"><circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"></circle> <circle id="total-progress-circle" cx="40" cy="40" r="36" stroke="#3b82f6" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="226"></circle>
+       </svg>
+       <div class="absolute inset-0 flex items-center justify-center"><span id="total-progress" class="text-lg font-bold text-blue-600">0%</span>
+       </div>
+      </div>
+      <p class="font-semibold text-gray-700">Tổng</p>
+     </div>
+     <div class="text-center">
+      <div class="relative w-20 h-20 mx-auto mb-3">
+       <svg class="w-20 h-20 progress-circle"><circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"></circle> <circle id="vocab-progress-circle" cx="40" cy="40" r="36" stroke="#10b981" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="226"></circle>
+       </svg>
+       <div class="absolute inset-0 flex items-center justify-center"><span id="vocab-progress" class="text-lg font-bold text-green-600">0%</span>
+       </div>
+      </div>
+      <p class="font-semibold text-gray-700">Từ vựng</p>
+     </div>
+     <div class="text-center">
+      <div class="relative w-20 h-20 mx-auto mb-3">
+       <svg class="w-20 h-20 progress-circle"><circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"></circle> <circle id="reading-progress-circle" cx="40" cy="40" r="36" stroke="#f59e0b" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="226"></circle>
+       </svg>
+       <div class="absolute inset-0 flex items-center justify-center"><span id="reading-progress" class="text-lg font-bold text-yellow-600">0%</span>
+       </div>
+      </div>
+      <p class="font-semibold text-gray-700">Bài đọc</p>
+     </div>
+     <div class="text-center">
+      <div class="relative w-20 h-20 mx-auto mb-3">
+       <svg class="w-20 h-20 progress-circle"><circle cx="40" cy="40" r="36" stroke="#e5e7eb" stroke-width="8" fill="none"></circle> <circle id="grammar-progress-circle" cx="40" cy="40" r="36" stroke="#8b5cf6" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="226"></circle>
+       </svg>
+       <div class="absolute inset-0 flex items-center justify-center"><span id="grammar-progress" class="text-lg font-bold text-purple-600">0%</span>
+       </div>
+      </div>
+      <p class="font-semibold text-gray-700">Ngữ pháp</p>
+     </div>
+    </div>
+   </div><!-- Content Selection Tabs -->
+   <div class="bg-white rounded-xl shadow-lg mb-8">
+    <div class="flex flex-col sm:flex-row justify-center border-b"><button onclick="showSection('vocabulary')" class="tab-button px-6 py-4 font-semibold text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 active flex-1 sm:flex-none" id="vocab-tab"> Từ vựng </button> <button onclick="showSection('reading')" class="tab-button px-6 py-4 font-semibold text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 flex-1 sm:flex-none" id="reading-tab"> Bài đọc </button> <button onclick="showSection('grammar')" class="tab-button px-6 py-4 font-semibold text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 flex-1 sm:flex-none" id="grammar-tab"> Ngữ pháp </button>
+    </div><!-- Vocabulary Section -->
+    <div id="vocabulary-section" class="p-6"><!-- Navigation buttons -->
+     <div class="flex flex-col sm:flex-row justify-center gap-4 mb-6"><button onclick="showVocabMode('flashcard')" id="flashcard-btn" class="vocab-mode-btn bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 w-full sm:w-auto"> Học Flashcard </button> <button onclick="showVocabMode('test')" id="test-btn" class="vocab-mode-btn bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 w-full sm:w-auto"> Kiểm tra trắc nghiệm </button>
+     </div><!-- Flashcard Mode -->
+     <div id="flashcard-mode">
+      <div class="text-center mb-6">
+       <h3 class="text-2xl font-bold text-gray-800 mb-2">Học từ vựng với Flashcard</h3>
+       <p class="text-gray-600">Nhấn Space để lật thẻ, ← để lùi, → để tiếp tục</p>
+      </div>
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+       <div class="flashcard-inner" id="flashcard-inner">
+        <div class="flashcard-front" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+         <h2 id="word-front" class="text-4xl font-bold text-white mb-4">poverty</h2>
+         <p id="pronunciation" class="text-xl text-white opacity-90">/ˈpɒvəti/</p>
+         <p id="word-type" class="text-lg text-white opacity-80 mt-2">(noun)</p><button onclick="event.stopPropagation(); speakWord(vocabularyData[currentCardIndex].word);" class="mt-4 bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 mx-auto">
+          <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.776l-4.146-3.32a1 1 0 00-.632-.227H2a1 1 0 01-1-1V7.771a1 1 0 011-1h1.605a1 1 0 00.632-.227l4.146-3.32a1 1 0 011.617.776zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.983 5.983 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.984 3.984 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd"></path>
+          </svg> Phát âm </button>
+        </div>
+        <div class="flashcard-back" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);">
+         <h3 id="word-meaning" class="text-2xl font-bold text-white mb-4">sự nghèo đói</h3>
+         <div id="word-example" class="text-lg text-white opacity-90 italic text-center">
+          "Many families live in <span class="highlight">poverty</span> and struggle to meet basic needs."
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="flex justify-center items-center gap-4 mt-8"><button onclick="previousCard()" class="control-button bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold"> ← Lùi </button> <span id="card-counter" class="text-lg font-semibold text-gray-700">1 / 62</span> <button onclick="nextCard()" class="control-button bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold"> Tiếp → </button>
+      </div>
+     </div><!-- Vocabulary Test Mode -->
+     <div id="test-mode" class="hidden">
+      <div class="text-center mb-6">
+       <h3 class="text-2xl font-bold text-gray-800 mb-2">Kiểm tra từ vựng</h3>
+       <p class="text-gray-600">67 câu trắc nghiệm - Chọn đáp án đúng nhất</p>
+       <div class="mt-4">
+        <div class="bg-gray-200 rounded-full h-3 w-full max-w-md mx-auto">
+         <div id="test-progress-bar" class="bg-blue-600 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+        <p class="mt-2 text-sm text-gray-600"><span id="test-current">0</span> / <span id="test-total">67</span> câu | Điểm: <span id="test-score">0</span>/<span id="test-max-score">67</span></p>
+       </div>
+      </div>
+      <div id="vocab-test-container" class="space-y-6"><!-- Test questions will be generated here -->
+      </div>
+      <div class="text-center mt-8"><button onclick="resetVocabTest()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200"> Làm lại bài kiểm tra </button>
+      </div>
+     </div>
+    </div><!-- Reading Section -->
+    <div id="reading-section" class="p-6 hidden"><!-- Navigation buttons for reading section -->
+     <div class="flex flex-col sm:flex-row justify-center gap-4 mb-6"><button onclick="showReadingMode('social-issues')" id="social-issues-btn" class="vocab-mode-btn bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 active w-full sm:w-auto"> Social Issues </button> <button onclick="showReadingMode('reading-text')" id="reading-text-btn" class="vocab-mode-btn bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 w-full sm:w-auto"> Bài đọc hiểu </button>
+     </div><!-- Social Issues Mode -->
+     <div id="social-issues-mode">
+      <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Các vấn đề xã hội trọng điểm</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Poverty -->
+       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div class="bg-gradient-to-r from-red-500 to-red-600 p-4">
+         <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">💰</span>
+          </div>
+          <h4 class="text-xl font-bold text-white">Poverty</h4>
+         </div>
+        </div>
+        <div class="p-6">
+         <p class="text-gray-700 mb-4"><strong>Poverty</strong> - The state of lacking sufficient financial resources and basic necessities to maintain a minimum standard of living.</p>
+         <ul class="text-sm text-gray-600 space-y-2">
+          <li>• Lack of food and clean water</li>
+          <li>• No stable housing or shelter</li>
+          <li>• Limited access to education and healthcare</li>
+          <li>• Affects over 700 million people globally</li>
+         </ul>
+        </div>
+       </div><!-- Homelessness -->
+       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div class="bg-gradient-to-r from-orange-500 to-orange-600 p-4">
+         <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">🏠</span>
+          </div>
+          <h4 class="text-xl font-bold text-white">Homelessness</h4>
+         </div>
+        </div>
+        <div class="p-6">
+         <p class="text-gray-700 mb-4"><strong>Homelessness</strong> - The condition of lacking stable, safe, and adequate housing.</p>
+         <ul class="text-sm text-gray-600 space-y-2">
+          <li>• Living on streets or in temporary shelters</li>
+          <li>• Lack of security and safety</li>
+          <li>• Difficulty accessing social services</li>
+          <li>• Impacts physical and mental health</li>
+         </ul>
+        </div>
+       </div><!-- Climate Change -->
+       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div class="bg-gradient-to-r from-green-500 to-green-600 p-4">
+         <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">🌍</span>
+          </div>
+          <h4 class="text-xl font-bold text-white">Climate Change</h4>
+         </div>
+        </div>
+        <div class="p-6">
+         <p class="text-gray-700 mb-4"><strong>Climate Change</strong> - Long-term shifts in global climate patterns caused by human activities.</p>
+         <ul class="text-sm text-gray-600 space-y-2">
+          <li>• Rising global temperatures</li>
+          <li>• Increasing extreme weather events</li>
+          <li>• Rising sea levels</li>
+          <li>• Impact on agriculture and ecosystems</li>
+         </ul>
+        </div>
+       </div><!-- Mental Health -->
+       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-4">
+         <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">🧠</span>
+          </div>
+          <h4 class="text-xl font-bold text-white">Mental Health Crisis</h4>
+         </div>
+        </div>
+        <div class="p-6">
+         <p class="text-gray-700 mb-4"><strong>Mental Health Crisis</strong> - The increasing prevalence of mental health issues in society.</p>
+         <ul class="text-sm text-gray-600 space-y-2">
+          <li>• Rising rates of depression and anxiety</li>
+          <li>• Lack of mental health support services</li>
+          <li>• Social stigma around mental illness</li>
+          <li>• Impact on productivity and quality of life</li>
+         </ul>
+        </div>
+       </div><!-- Digital Divide -->
+       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-4">
+         <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">💻</span>
+          </div>
+          <h4 class="text-xl font-bold text-white">Digital Divide</h4>
+         </div>
+        </div>
+        <div class="p-6">
+         <p class="text-gray-700 mb-4"><strong>Digital Divide</strong> - The gap between those who have access to modern technology and those who don't.</p>
+         <ul class="text-sm text-gray-600 space-y-2">
+          <li>• Lack of internet and digital devices</li>
+          <li>• Limited digital literacy skills</li>
+          <li>• Impact on education and employment</li>
+          <li>• Increases social inequality</li>
+         </ul>
+        </div>
+       </div><!-- Gender Inequality -->
+       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div class="bg-gradient-to-r from-pink-500 to-pink-600 p-4">
+         <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">⚖️</span>
+          </div>
+          <h4 class="text-xl font-bold text-white">Gender Inequality</h4>
+         </div>
+        </div>
+        <div class="p-6">
+         <p class="text-gray-700 mb-4"><strong>Gender Inequality</strong> - Discrimination and unequal opportunities based on gender.</p>
+         <ul class="text-sm text-gray-600 space-y-2">
+          <li>• Gender pay gap in the workplace</li>
+          <li>• Limited leadership opportunities for women</li>
+          <li>• Domestic violence and harassment</li>
+          <li>• Lack of reproductive rights and education</li>
+         </ul>
+        </div>
+       </div><!-- Aging Population -->
+       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div class="bg-gradient-to-r from-indigo-500 to-indigo-600 p-4">
+         <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">👴</span>
+          </div>
+          <h4 class="text-xl font-bold text-white">Aging Population</h4>
+         </div>
+        </div>
+        <div class="p-6">
+         <p class="text-gray-700 mb-4"><strong>Aging Population</strong> - The increasing proportion of elderly people in the population.</p>
+         <ul class="text-sm text-gray-600 space-y-2">
+          <li>• Pressure on healthcare systems</li>
+          <li>• Shortage of young workforce</li>
+          <li>• Rising elderly care costs</li>
+          <li>• Need for pension system reforms</li>
+         </ul>
+        </div>
+       </div><!-- Youth Unemployment -->
+       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div class="bg-gradient-to-r from-yellow-500 to-yellow-600 p-4">
+         <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">👨‍💼</span>
+          </div>
+          <h4 class="text-xl font-bold text-white">Youth Unemployment</h4>
+         </div>
+        </div>
+        <div class="p-6">
+         <p class="text-gray-700 mb-4"><strong>Youth Unemployment</strong> - High unemployment rates among people aged 15-24.</p>
+         <ul class="text-sm text-gray-600 space-y-2">
+          <li>• Lack of experience and skills</li>
+          <li>• Mismatch between education and job market</li>
+          <li>• Impact on economic development</li>
+          <li>• Causes social instability</li>
+         </ul>
+        </div>
+       </div><!-- Food Security -->
+       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <div class="bg-gradient-to-r from-teal-500 to-teal-600 p-4">
+         <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">🌾</span>
+          </div>
+          <h4 class="text-xl font-bold text-white">Food Security</h4>
+         </div>
+        </div>
+        <div class="p-6">
+         <p class="text-gray-700 mb-4"><strong>Food Security</strong> - Ensuring all people have access to sufficient, safe, and nutritious food.</p>
+         <ul class="text-sm text-gray-600 space-y-2">
+          <li>• 828 million people face hunger worldwide</li>
+          <li>• Climate change affects agriculture</li>
+          <li>• Conflicts and wars cause food shortages</li>
+          <li>• Need for sustainable farming development</li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div><!-- Reading Text Mode -->
+     <div id="reading-text-mode" class="hidden">
+      <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Bài đọc hiểu</h3>
+      <div class="bg-gray-50 rounded-lg p-6 mb-8">
+       <div class="reading-text text-gray-800">
+        <p class="mb-4">Last month, our local <span class="highlight">charity</span> launched a major <span class="highlight">campaign</span> to address growing social issues in the community. The <span class="highlight">organization</span> decided to <span class="highlight">focus on</span> helping <span class="highlight">homeless</span> families who had been living in temporary <span class="highlight">shelters</span>. Many of these families <span class="highlight">struggle</span> with <span class="highlight">poverty</span> and cannot find <span class="highlight">affordable</span> housing due to rising costs and limited income opportunities.</p>
+        <p class="mb-4">The <span class="highlight">volunteers</span> worked tirelessly to <span class="highlight">collect</span> donations from local <span class="highlight">citizens</span>. They gathered warm <span class="highlight">blankets</span>, food supplies, and <span class="highlight">cash</span> contributions to support the cause. The <span class="highlight">non-profit</span> group also organized <span class="highlight">training</span> programs to help unemployed individuals develop new skills. <span class="highlight">Consequently</span>, many participants found better job opportunities and could <span class="highlight">improve</span> their living conditions.</p>
+        <p class="mb-4">However, the community still faces serious challenges. <span class="highlight">Crime</span> rates have increased in certain areas, and some people <span class="highlight">steal</span> basic necessities because they cannot <span class="highlight">afford</span> them. <span class="highlight">Disease</span> outbreaks, including <span class="highlight">tuberculosis</span> and <span class="highlight">malaria</span>, pose <span class="highlight">life-threatening</span> risks to vulnerable populations. The local <span class="highlight">healthcare</span> system struggles to <span class="highlight">deal with</span> these problems on such a large <span class="highlight">scale</span>.</p>
+        <p class="mb-4">Despite these <span class="highlight">difficulties</span>, the community remains hopeful. People from different backgrounds, regardless of their <span class="highlight">nationality</span> or <span class="highlight">accent</span>, work together with mutual <span class="highlight">respect</span>. The government has promised to <span class="highlight">invest</span> more resources in education and job creation programs. Local leaders <span class="highlight">recommend</span> that everyone should <span class="highlight">volunteer</span> their time or <span class="highlight">donate</span> to help <span class="highlight">solve</span> these pressing social issues.</p>
+        <p>Through collective <span class="highlight">effort</span> and <span class="highlight">cooperation</span>, the community believes they can create positive change. The <span class="highlight">movement</span> continues to grow as more people <span class="highlight">recognise</span> the importance of helping those in need and building a more equitable society for everyone.</p>
+       </div>
+      </div>
+      <div id="reading-quiz" class="space-y-4">
+       <h4 class="text-xl font-bold text-gray-800 mb-4">Câu hỏi trắc nghiệm</h4><!-- Quiz questions will be generated here -->
+      </div>
+     </div>
+    </div><!-- Grammar Section -->
+    <div id="grammar-section" class="p-6 hidden">
+     <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Ngữ pháp</h3>
+     <div class="space-y-4 mb-8"><button onclick="toggleGrammarContent('gerund')" class="w-full text-left bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white p-4 rounded-lg font-semibold transition-all duration-200"> GERUND (Danh động từ) </button>
+      <div id="gerund-content" class="grammar-content grammar-theory p-6 rounded-lg">
+       <h4 class="text-xl font-bold text-gray-800 mb-4">GERUND (Danh động từ)</h4>
+       <div class="space-y-4 text-gray-700">
+        <p><strong>Định nghĩa:</strong> Gerund là dạng V-ing của động từ được sử dụng như một danh từ.</p>
+        <p><strong>Cách thành lập:</strong> Verb + ing</p>
+        <p><strong>Chức năng:</strong></p>
+        <ul class="list-disc list-inside ml-4 space-y-2">
+         <li><strong>Làm chủ ngữ:</strong> Swimming is good for health.</li>
+         <li><strong>Làm tân ngữ:</strong> I enjoy reading books.</li>
+         <li><strong>Sau giới từ:</strong> She is interested in learning English.</li>
+         <li><strong>Sau một số động từ:</strong> avoid, enjoy, finish, mind, suggest, etc.</li>
+        </ul>
+        <p><strong>Ví dụ:</strong></p>
+        <ul class="list-disc list-inside ml-4 space-y-1">
+         <li>Helping others makes me happy.</li>
+         <li>They stopped talking when I entered.</li>
+         <li>I'm thinking of changing my job.</li>
+        </ul>
+       </div>
+      </div><button onclick="toggleGrammarContent('question-tags')" class="w-full text-left bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white p-4 rounded-lg font-semibold transition-all duration-200"> QUESTION TAGS (Câu hỏi đuôi) </button>
+      <div id="question-tags-content" class="grammar-content grammar-theory p-6 rounded-lg">
+       <h4 class="text-xl font-bold text-gray-800 mb-4">QUESTION TAGS (Câu hỏi đuôi)</h4>
+       <div class="space-y-4 text-gray-700">
+        <p><strong>Định nghĩa:</strong> Question tags là những câu hỏi ngắn được thêm vào cuối câu để xác nhận thông tin.</p>
+        <p><strong>Quy tắc cơ bản:</strong></p>
+        <ul class="list-disc list-inside ml-4 space-y-2">
+         <li><strong>Câu khẳng định + question tag phủ định:</strong> You are a student, aren't you?</li>
+         <li><strong>Câu phủ định + question tag khẳng định:</strong> You don't like coffee, do you?</li>
+        </ul>
+        <p><strong>Với động từ TO BE:</strong></p>
+        <ul class="list-disc list-inside ml-4 space-y-1">
+         <li>She is beautiful, isn't she?</li>
+         <li>They aren't ready, are they?</li>
+        </ul>
+        <p><strong>Với động từ thường:</strong></p>
+        <ul class="list-disc list-inside ml-4 space-y-1">
+         <li>You like music, don't you?</li>
+         <li>He doesn't work here, does he?</li>
+        </ul>
+        <p><strong>Với động từ khuyết thiếu:</strong></p>
+        <ul class="list-disc list-inside ml-4 space-y-1">
+         <li>You can swim, can't you?</li>
+         <li>She won't come, will she?</li>
+        </ul>
+       </div>
+      </div><button onclick="showGrammarQuiz()" class="w-full text-left bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white p-4 rounded-lg font-semibold transition-all duration-200"> Bài tập tổng hợp (30 câu) </button>
+     </div>
+     <div id="grammar-quiz" class="hidden">
+      <h4 class="text-xl font-bold text-gray-800 mb-4">Bài tập tổng hợp</h4>
+      <div id="grammar-quiz-content"></div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+        // Configuration
+        const defaultConfig = {
+            unit_title: "Unit 6: Social Issues",
+            home_url: "https://nckhthptnk.github.io/tienganh11/"
+        };
+
+        // Data SDK Handler
+        const dataHandler = {
+            onDataChanged(data) {
+                updateProgressFromData(data);
+            }
+        };
+
+        // Vocabulary data
+        const vocabularyData = [
+            {
+                word: "war",
+                pronunciation: "/wɔː/",
+                type: "(noun)",
+                meaning: "chiến tranh",
+                example: "The <span class='highlight'>war</span> caused massive displacement of civilians."
+            },
+            {
+                word: "homeless",
+                pronunciation: "/ˈhəʊmləs/",
+                type: "(adjective)",
+                meaning: "vô gia cư",
+                example: "Many <span class='highlight'>homeless</span> people need shelter and food."
+            },
+            {
+                word: "disease",
+                pronunciation: "/dɪˈziːz/",
+                type: "(noun)",
+                meaning: "bệnh tật",
+                example: "Preventing <span class='highlight'>disease</span> is better than treating it."
+            },
+            {
+                word: "hunger",
+                pronunciation: "/ˈhʌŋɡə/",
+                type: "(noun)",
+                meaning: "đói khát",
+                example: "World <span class='highlight'>hunger</span> affects millions of children."
+            },
+            {
+                word: "unemployment",
+                pronunciation: "/ˌʌnɪmˈplɔɪmənt/",
+                type: "(noun)",
+                meaning: "thất nghiệp",
+                example: "<span class='highlight'>Unemployment</span> rates have risen during the crisis."
+            },
+            {
+                word: "racism",
+                pronunciation: "/ˈreɪsɪzəm/",
+                type: "(noun)",
+                meaning: "phân biệt chủng tộc",
+                example: "We must fight against <span class='highlight'>racism</span> in all its forms."
+            },
+            {
+                word: "solve",
+                pronunciation: "/sɒlv/",
+                type: "(verb)",
+                meaning: "giải quyết",
+                example: "We need to <span class='highlight'>solve</span> these social problems together."
+            },
+            {
+                word: "affordable",
+                pronunciation: "/əˈfɔːdəbl/",
+                type: "(adjective)",
+                meaning: "có thể chi trả được",
+                example: "Everyone deserves access to <span class='highlight'>affordable</span> healthcare."
+            },
+            {
+                word: "respect",
+                pronunciation: "/rɪˈspekt/",
+                type: "(noun/verb)",
+                meaning: "tôn trọng",
+                example: "We should <span class='highlight'>respect</span> people from all backgrounds."
+            },
+            {
+                word: "collect",
+                pronunciation: "/kəˈlekt/",
+                type: "(verb)",
+                meaning: "thu thập",
+                example: "The charity will <span class='highlight'>collect</span> donations for the victims."
+            },
+            {
+                word: "nationality",
+                pronunciation: "/ˌnæʃəˈnæləti/",
+                type: "(noun)",
+                meaning: "quốc tịch",
+                example: "Discrimination based on <span class='highlight'>nationality</span> is unacceptable."
+            },
+            {
+                word: "non-profit",
+                pronunciation: "/nɒn ˈprɒfɪt/",
+                type: "(adjective)",
+                meaning: "phi lợi nhuận",
+                example: "The <span class='highlight'>non-profit</span> organization helps poor families."
+            },
+            {
+                word: "organization",
+                pronunciation: "/ˌɔːɡənaɪˈzeɪʃn/",
+                type: "(noun)",
+                meaning: "tổ chức",
+                example: "The <span class='highlight'>organization</span> provides aid to refugees."
+            },
+            {
+                word: "focus on",
+                pronunciation: "/ˈfəʊkəs ɒn/",
+                type: "(phrasal verb)",
+                meaning: "tập trung vào",
+                example: "We should <span class='highlight'>focus on</span> helping the most vulnerable."
+            },
+            {
+                word: "deal with",
+                pronunciation: "/diːl wɪð/",
+                type: "(phrasal verb)",
+                meaning: "giải quyết, đối phó với",
+                example: "How can we <span class='highlight'>deal with</span> poverty effectively?"
+            },
+            {
+                word: "charity",
+                pronunciation: "/ˈtʃærəti/",
+                type: "(noun)",
+                meaning: "từ thiện",
+                example: "The <span class='highlight'>charity</span> raised money for disaster victims."
+            },
+            {
+                word: "effort",
+                pronunciation: "/ˈefət/",
+                type: "(noun)",
+                meaning: "nỗ lực",
+                example: "It takes collective <span class='highlight'>effort</span> to solve social issues."
+            },
+            {
+                word: "recognise",
+                pronunciation: "/ˈrekəɡnaɪz/",
+                type: "(verb)",
+                meaning: "nhận ra, công nhận",
+                example: "We must <span class='highlight'>recognise</span> the signs of mental illness."
+            },
+            {
+                word: "symptom",
+                pronunciation: "/ˈsɪmptəm/",
+                type: "(noun)",
+                meaning: "triệu chứng",
+                example: "Fever is a common <span class='highlight'>symptom</span> of many diseases."
+            },
+            {
+                word: "tuberculosis",
+                pronunciation: "/tjuːˌbɜːkjuˈləʊsɪs/",
+                type: "(noun)",
+                meaning: "bệnh lao",
+                example: "<span class='highlight'>Tuberculosis</span> is still a major health problem worldwide."
+            },
+            {
+                word: "malaria",
+                pronunciation: "/məˈleəriə/",
+                type: "(noun)",
+                meaning: "bệnh sốt rét",
+                example: "<span class='highlight'>Malaria</span> affects millions in tropical regions."
+            },
+            {
+                word: "scale",
+                pronunciation: "/skeɪl/",
+                type: "(noun)",
+                meaning: "quy mô",
+                example: "The problem exists on a global <span class='highlight'>scale</span>."
+            },
+            {
+                word: "life-threatening",
+                pronunciation: "/laɪf ˈθretnɪŋ/",
+                type: "(adjective)",
+                meaning: "đe dọa tính mạng",
+                example: "Some diseases are <span class='highlight'>life-threatening</span> without treatment."
+            },
+            {
+                word: "invest",
+                pronunciation: "/ɪnˈvest/",
+                type: "(verb)",
+                meaning: "đầu tư",
+                example: "Governments should <span class='highlight'>invest</span> more in education."
+            },
+            {
+                word: "crisis",
+                pronunciation: "/ˈkraɪsɪs/",
+                type: "(noun)",
+                meaning: "khủng hoảng",
+                example: "The economic <span class='highlight'>crisis</span> affected many families."
+            },
+            {
+                word: "conduct",
+                pronunciation: "/kənˈdʌkt/",
+                type: "(verb)",
+                meaning: "tiến hành",
+                example: "Researchers will <span class='highlight'>conduct</span> a study on poverty."
+            },
+            {
+                word: "conflict",
+                pronunciation: "/ˈkɒnflɪkt/",
+                type: "(noun)",
+                meaning: "xung đột",
+                example: "Armed <span class='highlight'>conflict</span> creates humanitarian disasters."
+            },
+            {
+                word: "accent",
+                pronunciation: "/ˈæksent/",
+                type: "(noun)",
+                meaning: "giọng nói",
+                example: "Don't judge people by their <span class='highlight'>accent</span> or appearance."
+            },
+            {
+                word: "steal",
+                pronunciation: "/stiːl/",
+                type: "(verb)",
+                meaning: "ăn cắp",
+                example: "Poverty sometimes forces people to <span class='highlight'>steal</span> food."
+            },
+            {
+                word: "candidate",
+                pronunciation: "/ˈkændɪdət/",
+                type: "(noun)",
+                meaning: "ứng cử viên",
+                example: "The <span class='highlight'>candidate</span> promised to reduce unemployment."
+            },
+            {
+                word: "struggle",
+                pronunciation: "/ˈstrʌɡl/",
+                type: "(verb/noun)",
+                meaning: "đấu tranh, cuộc đấu tranh",
+                example: "Many families <span class='highlight'>struggle</span> to pay for basic needs."
+            },
+            {
+                word: "movement",
+                pronunciation: "/ˈmuːvmənt/",
+                type: "(noun)",
+                meaning: "phong trào",
+                example: "The civil rights <span class='highlight'>movement</span> fought for equality."
+            },
+            {
+                word: "poverty",
+                pronunciation: "/ˈpɒvəti/",
+                type: "(noun)",
+                meaning: "nghèo đói",
+                example: "Extreme <span class='highlight'>poverty</span> affects billions worldwide."
+            },
+            {
+                word: "depression",
+                pronunciation: "/dɪˈpreʃn/",
+                type: "(noun)",
+                meaning: "trầm cảm",
+                example: "Mental health issues like <span class='highlight'>depression</span> need attention."
+            },
+            {
+                word: "obesity",
+                pronunciation: "/əʊˈbiːsəti/",
+                type: "(noun)",
+                meaning: "béo phì",
+                example: "Childhood <span class='highlight'>obesity</span> is becoming more common."
+            },
+            {
+                word: "bullying",
+                pronunciation: "/ˈbʊliɪŋ/",
+                type: "(noun)",
+                meaning: "bắt nạt",
+                example: "School <span class='highlight'>bullying</span> can cause serious psychological harm."
+            },
+            {
+                word: "crime",
+                pronunciation: "/kraɪm/",
+                type: "(noun)",
+                meaning: "tội phạm",
+                example: "High unemployment often leads to increased <span class='highlight'>crime</span>."
+            },
+            {
+                word: "healthcare",
+                pronunciation: "/ˈhelθkeə/",
+                type: "(noun)",
+                meaning: "chăm sóc sức khỏe",
+                example: "Access to quality <span class='highlight'>healthcare</span> is a basic right."
+            },
+            {
+                word: "pollution",
+                pronunciation: "/pəˈluːʃn/",
+                type: "(noun)",
+                meaning: "ô nhiễm",
+                example: "Air <span class='highlight'>pollution</span> causes respiratory diseases."
+            },
+            {
+                word: "gender inequality",
+                pronunciation: "/ˈdʒendə ˌɪnɪˈkwɒləti/",
+                type: "(noun phrase)",
+                meaning: "bất bình đẳng giới",
+                example: "<span class='highlight'>Gender inequality</span> limits women's opportunities."
+            },
+            {
+                word: "rely on",
+                pronunciation: "/rɪˈlaɪ ɒn/",
+                type: "(phrasal verb)",
+                meaning: "dựa vào",
+                example: "Many people <span class='highlight'>rely on</span> government assistance."
+            },
+            {
+                word: "shelter",
+                pronunciation: "/ˈʃeltə/",
+                type: "(noun)",
+                meaning: "nơi trú ẩn",
+                example: "Homeless people need food and <span class='highlight'>shelter</span>."
+            },
+            {
+                word: "deliver",
+                pronunciation: "/dɪˈlɪvə/",
+                type: "(verb)",
+                meaning: "giao, cung cấp",
+                example: "Volunteers <span class='highlight'>deliver</span> food to elderly people."
+            },
+            {
+                word: "postpone",
+                pronunciation: "/pəˈspəʊn/",
+                type: "(verb)",
+                meaning: "hoãn lại",
+                example: "They had to <span class='highlight'>postpone</span> the charity event."
+            },
+            {
+                word: "volunteer",
+                pronunciation: "/ˌvɒlənˈtɪə/",
+                type: "(noun/verb)",
+                meaning: "tình nguyện viên / làm tình nguyện",
+                example: "Many people <span class='highlight'>volunteer</span> at homeless shelters."
+            },
+            {
+                word: "donate",
+                pronunciation: "/dəʊˈneɪt/",
+                type: "(verb)",
+                meaning: "quyên góp",
+                example: "Please <span class='highlight'>donate</span> money to help disaster victims."
+            },
+            {
+                word: "fundraising",
+                pronunciation: "/ˈfʌndreɪzɪŋ/",
+                type: "(noun)",
+                meaning: "gây quỹ",
+                example: "The school organized a <span class='highlight'>fundraising</span> event."
+            },
+            {
+                word: "recommend",
+                pronunciation: "/ˌrekəˈmend/",
+                type: "(verb)",
+                meaning: "khuyến nghị",
+                example: "Doctors <span class='highlight'>recommend</span> regular health check-ups."
+            },
+            {
+                word: "difficulty",
+                pronunciation: "/ˈdɪfɪkəlti/",
+                type: "(noun)",
+                meaning: "khó khăn",
+                example: "Many families face financial <span class='highlight'>difficulty</span>."
+            },
+            {
+                word: "blanket",
+                pronunciation: "/ˈblæŋkɪt/",
+                type: "(noun)",
+                meaning: "chăn",
+                example: "Refugees need warm <span class='highlight'>blankets</span> during winter."
+            },
+            {
+                word: "improve",
+                pronunciation: "/ɪmˈpruːv/",
+                type: "(verb)",
+                meaning: "cải thiện",
+                example: "Education can <span class='highlight'>improve</span> people's lives."
+            },
+            {
+                word: "economy",
+                pronunciation: "/ɪˈkɒnəmi/",
+                type: "(noun)",
+                meaning: "nền kinh tế",
+                example: "A strong <span class='highlight'>economy</span> creates more jobs."
+            },
+            {
+                word: "campaign",
+                pronunciation: "/kæmˈpeɪn/",
+                type: "(noun)",
+                meaning: "chiến dịch",
+                example: "The awareness <span class='highlight'>campaign</span> was very successful."
+            },
+            {
+                word: "protest",
+                pronunciation: "/ˈprəʊtest/",
+                type: "(noun/verb)",
+                meaning: "biểu tình",
+                example: "People <span class='highlight'>protest</span> against social injustice."
+            },
+            {
+                word: "fill up",
+                pronunciation: "/fɪl ʌp/",
+                type: "(phrasal verb)",
+                meaning: "làm đầy",
+                example: "The shelter quickly <span class='highlight'>filled up</span> with homeless people."
+            },
+            {
+                word: "cash",
+                pronunciation: "/kæʃ/",
+                type: "(noun)",
+                meaning: "tiền mặt",
+                example: "The charity needs <span class='highlight'>cash</span> donations urgently."
+            },
+            {
+                word: "ensure",
+                pronunciation: "/ɪnˈʃʊə/",
+                type: "(verb)",
+                meaning: "đảm bảo",
+                example: "We must <span class='highlight'>ensure</span> equal rights for everyone."
+            },
+            {
+                word: "burglary",
+                pronunciation: "/ˈbɜːɡləri/",
+                type: "(noun)",
+                meaning: "trộm cắp",
+                example: "<span class='highlight'>Burglary</span> rates increase in poor neighborhoods."
+            },
+            {
+                word: "stamp",
+                pronunciation: "/stæmp/",
+                type: "(noun)",
+                meaning: "tem",
+                example: "Food <span class='highlight'>stamps</span> help low-income families."
+            },
+            {
+                word: "citizen",
+                pronunciation: "/ˈsɪtɪzn/",
+                type: "(noun)",
+                meaning: "công dân",
+                example: "Every <span class='highlight'>citizen</span> has rights and responsibilities."
+            },
+            {
+                word: "chance",
+                pronunciation: "/tʃɑːns/",
+                type: "(noun)",
+                meaning: "cơ hội",
+                example: "Everyone deserves a <span class='highlight'>chance</span> for a better life."
+            },
+            {
+                word: "assistant",
+                pronunciation: "/əˈsɪstənt/",
+                type: "(noun)",
+                meaning: "trợ lý",
+                example: "The social worker's <span class='highlight'>assistant</span> helped families."
+            },
+            {
+                word: "training",
+                pronunciation: "/ˈtreɪnɪŋ/",
+                type: "(noun)",
+                meaning: "đào tạo",
+                example: "Job <span class='highlight'>training</span> programs help unemployed people."
+            },
+            {
+                word: "consequently",
+                pronunciation: "/ˈkɒnsɪkwəntli/",
+                type: "(adverb)",
+                meaning: "do đó",
+                example: "Poverty increased; <span class='highlight'>consequently</span>, crime rates rose."
+            },
+            {
+                word: "physical",
+                pronunciation: "/ˈfɪzɪkl/",
+                type: "(adjective)",
+                meaning: "thể chất",
+                example: "Both mental and <span class='highlight'>physical</span> health are important."
+            },
+            {
+                word: "harmful",
+                pronunciation: "/ˈhɑːmfl/",
+                type: "(adjective)",
+                meaning: "có hại",
+                example: "Pollution is <span class='highlight'>harmful</span> to human health."
+            },
+            {
+                word: "keen on",
+                pronunciation: "/kiːn ɒn/",
+                type: "(adjective phrase)",
+                meaning: "quan tâm đến",
+                example: "Young people are <span class='highlight'>keen on</span> social justice issues."
+            }
+        ];
+
+        // Reading quiz questions
+        const readingQuestions = [
+            {
+                question: "What did the local charity decide to focus on?",
+                options: ["Building new hospitals", "Helping homeless families", "Creating job training only", "Fighting crime"],
+                correct: 1
+            },
+            {
+                question: "What did volunteers collect to support the cause?",
+                options: ["Only money", "Blankets, food, and cash", "Just clothing", "Medical supplies only"],
+                correct: 1
+            },
+            {
+                question: "Which diseases are mentioned as life-threatening risks?",
+                options: ["Flu and cold", "Tuberculosis and malaria", "Heart disease and cancer", "Diabetes and obesity"],
+                correct: 1
+            },
+            {
+                question: "What has the government promised to do?",
+                options: ["Build more shelters", "Reduce taxes", "Invest more in education and job programs", "Increase police presence"],
+                correct: 2
+            },
+            {
+                question: "According to the passage, what helps create positive change?",
+                options: ["Government funding only", "Individual donations", "Collective effort and cooperation", "New technology"],
+                correct: 2
+            }
+        ];
+
+        // Grammar quiz questions
+        const grammarQuestions = [
+            {
+                question: "Choose the correct gerund form: I enjoy _____ books.",
+                options: ["read", "reading", "to read", "reads"],
+                correct: 1
+            },
+            {
+                question: "Complete the question tag: You are a student, _____?",
+                options: ["are you", "aren't you", "do you", "don't you"],
+                correct: 1
+            },
+            {
+                question: "_____ is my favorite hobby.",
+                options: ["Swim", "Swimming", "To swim", "Swims"],
+                correct: 1
+            },
+            {
+                question: "She doesn't like coffee, _____?",
+                options: ["does she", "doesn't she", "is she", "isn't she"],
+                correct: 0
+            },
+            {
+                question: "I'm interested in _____ English.",
+                options: ["learn", "learning", "to learn", "learned"],
+                correct: 1
+            },
+            {
+                question: "They can swim, _____?",
+                options: ["can they", "can't they", "do they", "don't they"],
+                correct: 1
+            },
+            {
+                question: "_____ others makes me happy.",
+                options: ["Help", "Helping", "To help", "Helped"],
+                correct: 1
+            },
+            {
+                question: "You won't come, _____?",
+                options: ["will you", "won't you", "do you", "don't you"],
+                correct: 0
+            },
+            {
+                question: "She avoided _____ about the problem.",
+                options: ["talk", "talking", "to talk", "talked"],
+                correct: 1
+            },
+            {
+                question: "He is tall, _____?",
+                options: ["is he", "isn't he", "does he", "doesn't he"],
+                correct: 1
+            },
+            {
+                question: "I suggested _____ a break.",
+                options: ["take", "taking", "to take", "took"],
+                correct: 1
+            },
+            {
+                question: "We aren't late, _____?",
+                options: ["are we", "aren't we", "do we", "don't we"],
+                correct: 0
+            },
+            {
+                question: "_____ is not allowed here.",
+                options: ["Smoke", "Smoking", "To smoke", "Smoked"],
+                correct: 1
+            },
+            {
+                question: "You have finished, _____?",
+                options: ["have you", "haven't you", "do you", "don't you"],
+                correct: 1
+            },
+            {
+                question: "They finished _____ the project.",
+                options: ["complete", "completing", "to complete", "completed"],
+                correct: 1
+            },
+            {
+                question: "She will help us, _____?",
+                options: ["will she", "won't she", "does she", "doesn't she"],
+                correct: 1
+            },
+            {
+                question: "I don't mind _____ early.",
+                options: ["wake up", "waking up", "to wake up", "woke up"],
+                correct: 1
+            },
+            {
+                question: "You didn't call me, _____?",
+                options: ["did you", "didn't you", "do you", "don't you"],
+                correct: 0
+            },
+            {
+                question: "_____ languages is useful.",
+                options: ["Learn", "Learning", "To learn", "Learned"],
+                correct: 1
+            },
+            {
+                question: "They should study harder, _____?",
+                options: ["should they", "shouldn't they", "do they", "don't they"],
+                correct: 1
+            },
+            {
+                question: "He kept _____ the same mistake.",
+                options: ["make", "making", "to make", "made"],
+                correct: 1
+            },
+            {
+                question: "You are coming, _____?",
+                options: ["are you", "aren't you", "do you", "don't you"],
+                correct: 1
+            },
+            {
+                question: "She enjoys _____ music.",
+                options: ["listen to", "listening to", "to listen to", "listened to"],
+                correct: 1
+            },
+            {
+                question: "He wasn't here yesterday, _____?",
+                options: ["was he", "wasn't he", "did he", "didn't he"],
+                correct: 0
+            },
+            {
+                question: "_____ exercise is important for health.",
+                options: ["Do", "Doing", "To do", "Did"],
+                correct: 1
+            },
+            {
+                question: "You could help me, _____?",
+                options: ["could you", "couldn't you", "can you", "can't you"],
+                correct: 1
+            },
+            {
+                question: "I appreciate your _____ me.",
+                options: ["help", "helping", "to help", "helped"],
+                correct: 1
+            },
+            {
+                question: "She has been here before, _____?",
+                options: ["has she", "hasn't she", "does she", "doesn't she"],
+                correct: 1
+            },
+            {
+                question: "They stopped _____ when I arrived.",
+                options: ["talk", "talking", "to talk", "talked"],
+                correct: 1
+            },
+            {
+                question: "You wouldn't lie to me, _____?",
+                options: ["would you", "wouldn't you", "do you", "don't you"],
+                correct: 0
+            }
+        ];
+
+        // State variables
+        let currentCardIndex = 0;
+        let currentSection = 'vocabulary';
+        let currentVocabMode = 'flashcard';
+        let isCardFlipped = false;
+        let currentReadingQuestion = 0;
+        let readingScore = 0;
+        let currentGrammarQuestion = 0;
+        let grammarScore = 0;
+        let readingCompleted = false;
+        let grammarCompleted = false;
+        let vocabTestQuestions = [];
+        let vocabTestScore = 0;
+        let vocabTestAnswered = 0;
+        let vocabLearningStarted = false;
+        let learnedCards = new Set();
+
+        // Initialize app
+        async function initApp() {
+            if (window.dataSdk) {
+                const result = await window.dataSdk.init(dataHandler);
+                if (!result.isOk) {
+                    console.error("Failed to initialize data SDK");
+                }
+            }
+
+            if (window.elementSdk) {
+                await window.elementSdk.init({
+                    defaultConfig,
+                    onConfigChange: async (config) => {
+                        document.getElementById('unit-title').textContent = config.unit_title || defaultConfig.unit_title;
+                    },
+                    mapToCapabilities: (config) => ({
+                        recolorables: [],
+                        borderables: [],
+                        fontEditable: undefined,
+                        fontSizeable: undefined
+                    }),
+                    mapToEditPanelValues: (config) => new Map([
+                        ["unit_title", config.unit_title || defaultConfig.unit_title],
+                        ["home_url", config.home_url || defaultConfig.home_url]
+                    ])
+                });
+            }
+
+            loadVocabularyCard();
+            generateReadingQuiz();
+            updateProgress();
+            
+            // Initialize vocabulary mode
+            showVocabMode('flashcard');
+            
+            // Phát âm từ đầu tiên khi tải trang
+            setTimeout(() => {
+                speakWord(vocabularyData[0].word);
+            }, 1000);
+            
+            // Add keyboard event listeners
+            document.addEventListener('keydown', handleKeyPress);
+        }
+
+        // Handle keyboard events
+        function handleKeyPress(event) {
+            if (currentSection === 'vocabulary' && currentVocabMode === 'flashcard') {
+                switch(event.code) {
+                    case 'Space':
+                        event.preventDefault();
+                        flipCard();
+                        break;
+                    case 'ArrowLeft':
+                        event.preventDefault();
+                        previousCard();
+                        break;
+                    case 'ArrowRight':
+                        event.preventDefault();
+                        nextCard();
+                        break;
+                }
+            }
+        }
+
+        // Vocabulary functions
+        function showVocabMode(mode) {
+            currentVocabMode = mode;
+            
+            // Update button states
+            document.getElementById('flashcard-btn').classList.toggle('active', mode === 'flashcard');
+            document.getElementById('test-btn').classList.toggle('active', mode === 'test');
+            
+            // Show/hide modes
+            document.getElementById('flashcard-mode').classList.toggle('hidden', mode !== 'flashcard');
+            document.getElementById('test-mode').classList.toggle('hidden', mode !== 'test');
+            
+            if (mode === 'test' && vocabTestQuestions.length === 0) {
+                generateVocabTest();
+            }
+        }
+
+        function loadVocabularyCard() {
+            const card = vocabularyData[currentCardIndex];
+            document.getElementById('word-front').textContent = card.word;
+            document.getElementById('pronunciation').textContent = card.pronunciation;
+            document.getElementById('word-type').textContent = card.type;
+            document.getElementById('word-meaning').textContent = card.meaning;
+            document.getElementById('word-example').innerHTML = card.example;
+            document.getElementById('card-counter').textContent = `${currentCardIndex + 1} / ${vocabularyData.length}`;
+            
+            // Reset flip state
+            isCardFlipped = false;
+            document.getElementById('flashcard').classList.remove('flipped');
+        }
+
+        function flipCard() {
+            const flashcard = document.getElementById('flashcard');
+            flashcard.classList.toggle('flipped');
+            isCardFlipped = !isCardFlipped;
+            
+            // Đánh dấu bắt đầu học và thẻ hiện tại đã được xem
+            if (!vocabLearningStarted) {
+                vocabLearningStarted = true;
+            }
+            if (isCardFlipped) {
+                learnedCards.add(currentCardIndex);
+                updateProgress();
+            }
+            
+            playSound('flip');
+        }
+
+        function nextCard() {
+            if (currentCardIndex < vocabularyData.length - 1) {
+                // Đánh dấu thẻ hiện tại đã được học
+                if (!vocabLearningStarted) {
+                    vocabLearningStarted = true;
+                }
+                learnedCards.add(currentCardIndex);
+                
+                currentCardIndex++;
+                loadVocabularyCard();
+                saveProgress('vocabulary', `card_${currentCardIndex}`, true);
+                updateProgress();
+                
+                // Chỉ phát âm từ mới
+                setTimeout(() => {
+                    speakWord(vocabularyData[currentCardIndex].word);
+                }, 300);
+            }
+        }
+
+        function previousCard() {
+            if (currentCardIndex > 0) {
+                currentCardIndex--;
+                loadVocabularyCard();
+                // Chỉ phát âm từ mới
+                setTimeout(() => {
+                    speakWord(vocabularyData[currentCardIndex].word);
+                }, 300);
+            }
+        }
+
+        // Vocabulary test functions
+        function generateVocabTest() {
+            vocabTestQuestions = [];
+            vocabTestScore = 0;
+            vocabTestAnswered = 0;
+            
+            // Create questions for each vocabulary word
+            vocabularyData.forEach((word, index) => {
+                // Question 1: Word to meaning
+                const wrongMeanings = vocabularyData
+                    .filter((_, i) => i !== index)
+                    .map(w => w.meaning)
+                    .sort(() => Math.random() - 0.5)
+                    .slice(0, 3);
+                
+                const options1 = [word.meaning, ...wrongMeanings].sort(() => Math.random() - 0.5);
+                const correctIndex1 = options1.indexOf(word.meaning);
+                
+                vocabTestQuestions.push({
+                    question: `"${word.word}" có nghĩa là gì?`,
+                    options: options1,
+                    correct: correctIndex1,
+                    type: 'word-to-meaning'
+                });
+                
+                // Question 2: Meaning to word (for some words to reach 67 questions)
+                if (index < 5) {
+                    const wrongWords = vocabularyData
+                        .filter((_, i) => i !== index)
+                        .map(w => w.word)
+                        .sort(() => Math.random() - 0.5)
+                        .slice(0, 3);
+                    
+                    const options2 = [word.word, ...wrongWords].sort(() => Math.random() - 0.5);
+                    const correctIndex2 = options2.indexOf(word.word);
+                    
+                    vocabTestQuestions.push({
+                        question: `Từ nào có nghĩa là "${word.meaning}"?`,
+                        options: options2,
+                        correct: correctIndex2,
+                        type: 'meaning-to-word'
+                    });
+                }
+            });
+            
+            // Shuffle questions
+            vocabTestQuestions = vocabTestQuestions.sort(() => Math.random() - 0.5).slice(0, 67);
+            
+            renderVocabTest();
+            updateVocabTestProgress();
+        }
+
+        function renderVocabTest() {
+            const container = document.getElementById('vocab-test-container');
+            container.innerHTML = '';
+            
+            vocabTestQuestions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'vocab-test-question bg-white rounded-lg shadow-sm border p-6';
+                questionDiv.innerHTML = `
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm">
+                            ${index + 1}
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-semibold text-gray-800 mb-4">${question.question}</p>
+                            <div class="space-y-3">
+                                ${question.options.map((option, optIndex) => `
+                                    <button onclick="selectVocabTestAnswer(${index}, ${optIndex})" 
+                                            class="vocab-test-option w-full text-left p-4 bg-gray-50 hover:bg-gray-100 rounded-lg transition-all duration-200"
+                                            id="vocab-test-option-${index}-${optIndex}">
+                                        <span class="font-medium text-blue-600 mr-3">${String.fromCharCode(65 + optIndex)}.</span>
+                                        ${option}
+                                    </button>
+                                `).join('')}
+                            </div>
+                            <div id="vocab-test-result-${index}" class="mt-4 hidden">
+                                <div class="p-3 rounded-lg">
+                                    <p class="font-medium"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function selectVocabTestAnswer(questionIndex, optionIndex) {
+            const question = vocabTestQuestions[questionIndex];
+            const isCorrect = optionIndex === question.correct;
+            
+            // Disable all options for this question
+            for (let i = 0; i < question.options.length; i++) {
+                const option = document.getElementById(`vocab-test-option-${questionIndex}-${i}`);
+                option.classList.add('disabled');
+                option.style.cursor = 'not-allowed';
+                
+                if (i === question.correct) {
+                    option.classList.add('correct');
+                } else if (i === optionIndex && !isCorrect) {
+                    option.classList.add('incorrect');
+                }
+            }
+            
+            // Show result
+            const resultDiv = document.getElementById(`vocab-test-result-${questionIndex}`);
+            const resultContent = resultDiv.querySelector('p');
+            resultDiv.classList.remove('hidden');
+            
+            if (isCorrect) {
+                vocabTestScore++;
+                resultDiv.querySelector('div').className = 'p-3 rounded-lg bg-green-100 border border-green-300';
+                resultContent.textContent = '✓ Chính xác!';
+                resultContent.className = 'font-medium text-green-700';
+                playSound('correct');
+            } else {
+                resultDiv.querySelector('div').className = 'p-3 rounded-lg bg-red-100 border border-red-300';
+                resultContent.textContent = `✗ Sai rồi! Đáp án đúng là: ${String.fromCharCode(65 + question.correct)}. ${question.options[question.correct]}`;
+                resultContent.className = 'font-medium text-red-700';
+                playSound('incorrect');
+            }
+            
+            vocabTestAnswered++;
+            updateVocabTestProgress();
+            
+            // Save progress
+            if (vocabTestAnswered === vocabTestQuestions.length) {
+                saveProgress('vocabulary_test', 'completed', true, vocabTestScore);
+            }
+        }
+
+        function updateVocabTestProgress() {
+            const progressPercent = (vocabTestAnswered / vocabTestQuestions.length) * 100;
+            document.getElementById('test-progress-bar').style.width = progressPercent + '%';
+            document.getElementById('test-current').textContent = vocabTestAnswered;
+            document.getElementById('test-total').textContent = vocabTestQuestions.length;
+            document.getElementById('test-score').textContent = vocabTestScore;
+            document.getElementById('test-max-score').textContent = vocabTestQuestions.length;
+        }
+
+        function resetVocabTest() {
+            vocabTestQuestions = [];
+            vocabTestScore = 0;
+            vocabTestAnswered = 0;
+            generateVocabTest();
+        }
+
+        // Section navigation
+        function showSection(section) {
+            // Hide all sections
+            document.getElementById('vocabulary-section').classList.add('hidden');
+            document.getElementById('reading-section').classList.add('hidden');
+            document.getElementById('grammar-section').classList.add('hidden');
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab-button').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section and activate tab
+            document.getElementById(`${section}-section`).classList.remove('hidden');
+            document.getElementById(`${section}-tab`).classList.add('active');
+            
+            currentSection = section;
+            
+            if (section === 'reading') {
+                // Initialize reading section with social issues mode
+                showReadingMode('social-issues');
+                if (!readingCompleted) {
+                    generateReadingQuiz();
+                }
+            }
+        }
+
+        // Reading mode navigation
+        function showReadingMode(mode) {
+            // Update button states
+            document.getElementById('social-issues-btn').classList.toggle('active', mode === 'social-issues');
+            document.getElementById('reading-text-btn').classList.toggle('active', mode === 'reading-text');
+            
+            // Show/hide modes
+            document.getElementById('social-issues-mode').classList.toggle('hidden', mode !== 'social-issues');
+            document.getElementById('reading-text-mode').classList.toggle('hidden', mode !== 'reading-text');
+        }
+
+        // Reading functions
+        function generateReadingQuiz() {
+            const quizContainer = document.getElementById('reading-quiz');
+            quizContainer.innerHTML = '<h4 class="text-xl font-bold text-gray-800 mb-4">Câu hỏi trắc nghiệm</h4>';
+            
+            readingQuestions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'mb-6 p-4 bg-white rounded-lg shadow-sm border';
+                questionDiv.innerHTML = `
+                    <p class="font-semibold text-gray-800 mb-3">${index + 1}. ${q.question}</p>
+                    <div class="space-y-2">
+                        ${q.options.map((option, optIndex) => `
+                            <button onclick="selectReadingAnswer(${index}, ${optIndex})" 
+                                    class="quiz-option w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-all duration-200"
+                                    id="reading-option-${index}-${optIndex}">
+                                ${String.fromCharCode(65 + optIndex)}. ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        function selectReadingAnswer(questionIndex, optionIndex) {
+            const question = readingQuestions[questionIndex];
+            const isCorrect = optionIndex === question.correct;
+            
+            // Disable all options for this question
+            for (let i = 0; i < question.options.length; i++) {
+                const option = document.getElementById(`reading-option-${questionIndex}-${i}`);
+                option.disabled = true;
+                option.style.cursor = 'not-allowed';
+                
+                if (i === question.correct) {
+                    option.classList.add('correct');
+                } else if (i === optionIndex && !isCorrect) {
+                    option.classList.add('incorrect');
+                }
+            }
+            
+            if (isCorrect) {
+                readingScore++;
+                playSound('correct');
+            } else {
+                playSound('incorrect');
+            }
+            
+            // Check if all questions are answered
+            setTimeout(() => {
+                checkReadingCompletion();
+            }, 1000);
+        }
+
+        function checkReadingCompletion() {
+            const answeredQuestions = document.querySelectorAll('.quiz-option.correct, .quiz-option.incorrect').length;
+            if (answeredQuestions >= readingQuestions.length) {
+                readingCompleted = true;
+                saveProgress('reading', 'completed', true, readingScore);
+                updateProgress();
+            }
+        }
+
+        // Grammar functions
+        function toggleGrammarContent(type) {
+            // Close all grammar content sections first
+            const allGrammarContents = document.querySelectorAll('.grammar-content');
+            allGrammarContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Open the selected content
+            const selectedContent = document.getElementById(`${type}-content`);
+            selectedContent.classList.add('active');
+        }
+
+        function showGrammarQuiz() {
+            // Close all grammar theory sections first
+            const allGrammarContents = document.querySelectorAll('.grammar-content');
+            allGrammarContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Toggle the quiz section
+            const grammarQuizSection = document.getElementById('grammar-quiz');
+            grammarQuizSection.classList.toggle('hidden');
+            
+            // Generate quiz if it's being shown and hasn't been generated yet
+            if (!grammarQuizSection.classList.contains('hidden') && !grammarQuizSection.querySelector('.mb-6')) {
+                generateGrammarQuiz();
+            }
+        }
+
+        function generateGrammarQuiz() {
+            const quizContainer = document.getElementById('grammar-quiz-content');
+            quizContainer.innerHTML = '';
+            
+            grammarQuestions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'mb-6 p-4 bg-white rounded-lg shadow-sm border';
+                questionDiv.innerHTML = `
+                    <p class="font-semibold text-gray-800 mb-3">${index + 1}. ${q.question}</p>
+                    <div class="space-y-2">
+                        ${q.options.map((option, optIndex) => `
+                            <button onclick="selectGrammarAnswer(${index}, ${optIndex})" 
+                                    class="quiz-option w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-all duration-200"
+                                    id="grammar-option-${index}-${optIndex}">
+                                ${String.fromCharCode(65 + optIndex)}. ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        function selectGrammarAnswer(questionIndex, optionIndex) {
+            const question = grammarQuestions[questionIndex];
+            const isCorrect = optionIndex === question.correct;
+            
+            // Disable all options for this question
+            for (let i = 0; i < question.options.length; i++) {
+                const option = document.getElementById(`grammar-option-${questionIndex}-${i}`);
+                option.disabled = true;
+                option.style.cursor = 'not-allowed';
+                
+                if (i === question.correct) {
+                    option.classList.add('correct');
+                } else if (i === optionIndex && !isCorrect) {
+                    option.classList.add('incorrect');
+                }
+            }
+            
+            if (isCorrect) {
+                grammarScore++;
+                playSound('correct');
+            } else {
+                playSound('incorrect');
+            }
+            
+            // Check if all questions are answered
+            setTimeout(() => {
+                checkGrammarCompletion();
+            }, 1000);
+        }
+
+        function checkGrammarCompletion() {
+            const answeredQuestions = document.querySelectorAll('#grammar-quiz .quiz-option.correct, #grammar-quiz .quiz-option.incorrect').length;
+            if (answeredQuestions >= grammarQuestions.length) {
+                grammarCompleted = true;
+                saveProgress('grammar', 'completed', true, grammarScore);
+                updateProgress();
+            }
+        }
+
+        // Progress functions
+        async function saveProgress(section, itemId, completed, score = 0) {
+            if (window.dataSdk) {
+                const progressData = {
+                    section: section,
+                    item_id: itemId,
+                    completed: completed,
+                    score: score,
+                    timestamp: new Date().toISOString()
+                };
+                
+                const result = await window.dataSdk.create(progressData);
+                if (result.isOk) {
+                    updateProgress();
+                }
+            }
+        }
+
+        function updateProgressFromData(data) {
+            // Calculate progress from stored data
+            const vocabProgress = vocabLearningStarted ? (learnedCards.size / vocabularyData.length * 100) : 0;
+            const readingProgressValue = readingCompleted ? 100 : 0;
+            const grammarProgressValue = grammarCompleted ? 100 : 0;
+            const totalProgress = (vocabProgress + readingProgressValue + grammarProgressValue) / 3;
+            
+            updateProgressCircle('vocab-progress', 'vocab-progress-circle', vocabProgress);
+            updateProgressCircle('reading-progress', 'reading-progress-circle', readingProgressValue);
+            updateProgressCircle('grammar-progress', 'grammar-progress-circle', grammarProgressValue);
+            updateProgressCircle('total-progress', 'total-progress-circle', totalProgress);
+        }
+
+        function updateProgress() {
+            // Tính tiến độ từ vựng dựa trên số thẻ đã học (đã lật hoặc đã chuyển qua)
+            const vocabProgress = vocabLearningStarted ? (learnedCards.size / vocabularyData.length * 100) : 0;
+            const readingProgressValue = readingCompleted ? 100 : 0;
+            const grammarProgressValue = grammarCompleted ? 100 : 0;
+            const totalProgress = (vocabProgress + readingProgressValue + grammarProgressValue) / 3;
+            
+            updateProgressCircle('vocab-progress', 'vocab-progress-circle', vocabProgress);
+            updateProgressCircle('reading-progress', 'reading-progress-circle', readingProgressValue);
+            updateProgressCircle('grammar-progress', 'grammar-progress-circle', grammarProgressValue);
+            updateProgressCircle('total-progress', 'total-progress-circle', totalProgress);
+        }
+
+        function updateProgressCircle(textId, circleId, percentage) {
+            const textElement = document.getElementById(textId);
+            const circleElement = document.getElementById(circleId);
+            
+            if (textElement && circleElement) {
+                textElement.textContent = Math.round(percentage) + '%';
+                const circumference = 226;
+                const offset = circumference - (percentage / 100) * circumference;
+                circleElement.style.strokeDashoffset = offset;
+            }
+        }
+
+        // Sound functions
+        function playSound(type) {
+            // Create audio context for sound effects
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            
+            let frequency;
+            let duration;
+            
+            switch(type) {
+                case 'correct':
+                    frequency = 800;
+                    duration = 0.3;
+                    break;
+                case 'incorrect':
+                    frequency = 300;
+                    duration = 0.5;
+                    break;
+                case 'flip':
+                    frequency = 600;
+                    duration = 0.1;
+                    break;
+                case 'next':
+                    frequency = 500;
+                    duration = 0.1;
+                    break;
+                case 'prev':
+                    frequency = 400;
+                    duration = 0.1;
+                    break;
+                default:
+                    frequency = 440;
+                    duration = 0.1;
+            }
+            
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+
+        // Text-to-speech function for vocabulary pronunciation
+        function speakWord(word) {
+            if ('speechSynthesis' in window) {
+                // Cancel any ongoing speech
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.8;
+                utterance.pitch = 1;
+                utterance.volume = 0.8;
+                
+                // Try to use a native English voice if available
+                const voices = window.speechSynthesis.getVoices();
+                const englishVoice = voices.find(voice => 
+                    voice.lang.startsWith('en') && 
+                    (voice.name.includes('Google') || voice.name.includes('Microsoft') || voice.name.includes('Apple'))
+                );
+                
+                if (englishVoice) {
+                    utterance.voice = englishVoice;
+                }
+                
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // Navigation function
+        function goHome() {
+            const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+            const homeUrl = config.home_url || defaultConfig.home_url;
+            window.open(homeUrl, '_blank', 'noopener,noreferrer');
+        }
+
+        // Initialize app when page loads
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99746f9ac0f8a023',t:'MTc2MTkyNzE2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
