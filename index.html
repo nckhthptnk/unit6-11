@@ -479,7 +479,7 @@
     </div>
    </div><!-- Content Selection Tabs -->
    <div class="bg-white rounded-xl shadow-lg mb-8">
-    <div class="flex flex-col sm:flex-row justify-center border-b"><button onclick="showSection('vocabulary')" class="tab-button px-6 py-4 font-semibold text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 active flex-1 sm:flex-none" id="vocab-tab"> Từ vựng </button> <button onclick="showSection('reading')" class="tab-button px-6 py-4 font-semibold text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 flex-1 sm:flex-none" id="reading-tab"> Bài đọc </button> <button onclick="showSection('grammar')" class="tab-button px-6 py-4 font-semibold text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 flex-1 sm:flex-none" id="grammar-tab"> Ngữ pháp </button>
+    <div class="flex flex-col sm:flex-row justify-center border-b"><button onclick="showSection('vocabulary')" class="tab-button px-6 py-4 font-semibold text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 active flex-1 sm:flex-none" id="vocab-tab"> Từ vựng </button> <button onclick="showSection('reading')" class="tab-button px-6 py-4 font-semibold text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 flex-1 sm:flex-none" id="reading-tab"> Bài đọc </button> <button onclick="showSection('grammar')" class="tab-button px-6 py-4 font-semibold text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 flex-1 sm:flex-none" id="grammar-tab"> Ngữ pháp </button> <button onclick="showSection('social-issues')" class="tab-button px-6 py-4 font-semibold text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-600 flex-1 sm:flex-none" id="social-issues-tab"> Social Issues </button>
     </div><!-- Vocabulary Section -->
     <div id="vocabulary-section" class="p-6"><!-- Navigation buttons -->
      <div class="flex flex-col sm:flex-row justify-center gap-4 mb-6"><button onclick="showVocabMode('flashcard')" id="flashcard-btn" class="vocab-mode-btn bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 w-full sm:w-auto"> Học Flashcard </button> <button onclick="showVocabMode('test')" id="test-btn" class="vocab-mode-btn bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 w-full sm:w-auto"> Kiểm tra trắc nghiệm </button>
@@ -526,177 +526,8 @@
       </div>
      </div>
     </div><!-- Reading Section -->
-    <div id="reading-section" class="p-6 hidden"><!-- Navigation buttons for reading section -->
-     <div class="flex flex-col sm:flex-row justify-center gap-4 mb-6"><button onclick="showReadingMode('social-issues')" id="social-issues-btn" class="vocab-mode-btn bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 active w-full sm:w-auto"> Social Issues </button> <button onclick="showReadingMode('reading-text')" id="reading-text-btn" class="vocab-mode-btn bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 w-full sm:w-auto"> Bài đọc hiểu </button>
-     </div><!-- Social Issues Mode -->
-     <div id="social-issues-mode">
-      <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Các vấn đề xã hội trọng điểm</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Poverty -->
-       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-        <div class="bg-gradient-to-r from-red-500 to-red-600 p-4">
-         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">💰</span>
-          </div>
-          <h4 class="text-xl font-bold text-white">Poverty</h4>
-         </div>
-        </div>
-        <div class="p-6">
-         <p class="text-gray-700 mb-4"><strong>Poverty</strong> - The state of lacking sufficient financial resources and basic necessities to maintain a minimum standard of living.</p>
-         <ul class="text-sm text-gray-600 space-y-2">
-          <li>• Lack of food and clean water</li>
-          <li>• No stable housing or shelter</li>
-          <li>• Limited access to education and healthcare</li>
-          <li>• Affects over 700 million people globally</li>
-         </ul>
-        </div>
-       </div><!-- Homelessness -->
-       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-        <div class="bg-gradient-to-r from-orange-500 to-orange-600 p-4">
-         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">🏠</span>
-          </div>
-          <h4 class="text-xl font-bold text-white">Homelessness</h4>
-         </div>
-        </div>
-        <div class="p-6">
-         <p class="text-gray-700 mb-4"><strong>Homelessness</strong> - The condition of lacking stable, safe, and adequate housing.</p>
-         <ul class="text-sm text-gray-600 space-y-2">
-          <li>• Living on streets or in temporary shelters</li>
-          <li>• Lack of security and safety</li>
-          <li>• Difficulty accessing social services</li>
-          <li>• Impacts physical and mental health</li>
-         </ul>
-        </div>
-       </div><!-- Climate Change -->
-       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-        <div class="bg-gradient-to-r from-green-500 to-green-600 p-4">
-         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">🌍</span>
-          </div>
-          <h4 class="text-xl font-bold text-white">Climate Change</h4>
-         </div>
-        </div>
-        <div class="p-6">
-         <p class="text-gray-700 mb-4"><strong>Climate Change</strong> - Long-term shifts in global climate patterns caused by human activities.</p>
-         <ul class="text-sm text-gray-600 space-y-2">
-          <li>• Rising global temperatures</li>
-          <li>• Increasing extreme weather events</li>
-          <li>• Rising sea levels</li>
-          <li>• Impact on agriculture and ecosystems</li>
-         </ul>
-        </div>
-       </div><!-- Mental Health -->
-       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-        <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-4">
-         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">🧠</span>
-          </div>
-          <h4 class="text-xl font-bold text-white">Mental Health Crisis</h4>
-         </div>
-        </div>
-        <div class="p-6">
-         <p class="text-gray-700 mb-4"><strong>Mental Health Crisis</strong> - The increasing prevalence of mental health issues in society.</p>
-         <ul class="text-sm text-gray-600 space-y-2">
-          <li>• Rising rates of depression and anxiety</li>
-          <li>• Lack of mental health support services</li>
-          <li>• Social stigma around mental illness</li>
-          <li>• Impact on productivity and quality of life</li>
-         </ul>
-        </div>
-       </div><!-- Digital Divide -->
-       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-        <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-4">
-         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">💻</span>
-          </div>
-          <h4 class="text-xl font-bold text-white">Digital Divide</h4>
-         </div>
-        </div>
-        <div class="p-6">
-         <p class="text-gray-700 mb-4"><strong>Digital Divide</strong> - The gap between those who have access to modern technology and those who don't.</p>
-         <ul class="text-sm text-gray-600 space-y-2">
-          <li>• Lack of internet and digital devices</li>
-          <li>• Limited digital literacy skills</li>
-          <li>• Impact on education and employment</li>
-          <li>• Increases social inequality</li>
-         </ul>
-        </div>
-       </div><!-- Gender Inequality -->
-       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-        <div class="bg-gradient-to-r from-pink-500 to-pink-600 p-4">
-         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">⚖️</span>
-          </div>
-          <h4 class="text-xl font-bold text-white">Gender Inequality</h4>
-         </div>
-        </div>
-        <div class="p-6">
-         <p class="text-gray-700 mb-4"><strong>Gender Inequality</strong> - Discrimination and unequal opportunities based on gender.</p>
-         <ul class="text-sm text-gray-600 space-y-2">
-          <li>• Gender pay gap in the workplace</li>
-          <li>• Limited leadership opportunities for women</li>
-          <li>• Domestic violence and harassment</li>
-          <li>• Lack of reproductive rights and education</li>
-         </ul>
-        </div>
-       </div><!-- Aging Population -->
-       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-        <div class="bg-gradient-to-r from-indigo-500 to-indigo-600 p-4">
-         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">👴</span>
-          </div>
-          <h4 class="text-xl font-bold text-white">Aging Population</h4>
-         </div>
-        </div>
-        <div class="p-6">
-         <p class="text-gray-700 mb-4"><strong>Aging Population</strong> - The increasing proportion of elderly people in the population.</p>
-         <ul class="text-sm text-gray-600 space-y-2">
-          <li>• Pressure on healthcare systems</li>
-          <li>• Shortage of young workforce</li>
-          <li>• Rising elderly care costs</li>
-          <li>• Need for pension system reforms</li>
-         </ul>
-        </div>
-       </div><!-- Youth Unemployment -->
-       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-        <div class="bg-gradient-to-r from-yellow-500 to-yellow-600 p-4">
-         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">👨‍💼</span>
-          </div>
-          <h4 class="text-xl font-bold text-white">Youth Unemployment</h4>
-         </div>
-        </div>
-        <div class="p-6">
-         <p class="text-gray-700 mb-4"><strong>Youth Unemployment</strong> - High unemployment rates among people aged 15-24.</p>
-         <ul class="text-sm text-gray-600 space-y-2">
-          <li>• Lack of experience and skills</li>
-          <li>• Mismatch between education and job market</li>
-          <li>• Impact on economic development</li>
-          <li>• Causes social instability</li>
-         </ul>
-        </div>
-       </div><!-- Food Security -->
-       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-        <div class="bg-gradient-to-r from-teal-500 to-teal-600 p-4">
-         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">🌾</span>
-          </div>
-          <h4 class="text-xl font-bold text-white">Food Security</h4>
-         </div>
-        </div>
-        <div class="p-6">
-         <p class="text-gray-700 mb-4"><strong>Food Security</strong> - Ensuring all people have access to sufficient, safe, and nutritious food.</p>
-         <ul class="text-sm text-gray-600 space-y-2">
-          <li>• 828 million people face hunger worldwide</li>
-          <li>• Climate change affects agriculture</li>
-          <li>• Conflicts and wars cause food shortages</li>
-          <li>• Need for sustainable farming development</li>
-         </ul>
-        </div>
-       </div>
-      </div>
-     </div><!-- Reading Text Mode -->
-     <div id="reading-text-mode" class="hidden">
+    <div id="reading-section" class="p-6 hidden"><!-- Reading Text Mode -->
+     <div id="reading-text-mode">
       <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Bài đọc hiểu</h3>
       <div class="bg-gray-50 rounded-lg p-6 mb-8">
        <div class="reading-text text-gray-800">
@@ -765,6 +596,173 @@
      <div id="grammar-quiz" class="hidden">
       <h4 class="text-xl font-bold text-gray-800 mb-4">Bài tập tổng hợp</h4>
       <div id="grammar-quiz-content"></div>
+     </div>
+    </div><!-- Social Issues Section -->
+    <div id="social-issues-section" class="p-6 hidden">
+     <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Các vấn đề xã hội trọng điểm</h3>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Poverty -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+       <div class="bg-gradient-to-r from-red-500 to-red-600 p-4">
+        <div class="flex items-center gap-3">
+         <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">💰</span>
+         </div>
+         <h4 class="text-xl font-bold text-white">Poverty</h4>
+        </div>
+       </div>
+       <div class="p-6">
+        <p class="text-gray-700 mb-4"><strong>Poverty</strong> - The state of lacking sufficient financial resources and basic necessities to maintain a minimum standard of living.</p>
+        <ul class="text-sm text-gray-600 space-y-2">
+         <li>• Lack of food and clean water</li>
+         <li>• No stable housing or shelter</li>
+         <li>• Limited access to education and healthcare</li>
+         <li>• Affects over 700 million people globally</li>
+        </ul>
+       </div>
+      </div><!-- Homelessness -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+       <div class="bg-gradient-to-r from-orange-500 to-orange-600 p-4">
+        <div class="flex items-center gap-3">
+         <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">🏠</span>
+         </div>
+         <h4 class="text-xl font-bold text-white">Homelessness</h4>
+        </div>
+       </div>
+       <div class="p-6">
+        <p class="text-gray-700 mb-4"><strong>Homelessness</strong> - The condition of lacking stable, safe, and adequate housing.</p>
+        <ul class="text-sm text-gray-600 space-y-2">
+         <li>• Living on streets or in temporary shelters</li>
+         <li>• Lack of security and safety</li>
+         <li>• Difficulty accessing social services</li>
+         <li>• Impacts physical and mental health</li>
+        </ul>
+       </div>
+      </div><!-- Climate Change -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+       <div class="bg-gradient-to-r from-green-500 to-green-600 p-4">
+        <div class="flex items-center gap-3">
+         <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">🌍</span>
+         </div>
+         <h4 class="text-xl font-bold text-white">Climate Change</h4>
+        </div>
+       </div>
+       <div class="p-6">
+        <p class="text-gray-700 mb-4"><strong>Climate Change</strong> - Long-term shifts in global climate patterns caused by human activities.</p>
+        <ul class="text-sm text-gray-600 space-y-2">
+         <li>• Rising global temperatures</li>
+         <li>• Increasing extreme weather events</li>
+         <li>• Rising sea levels</li>
+         <li>• Impact on agriculture and ecosystems</li>
+        </ul>
+       </div>
+      </div><!-- Mental Health -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+       <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-4">
+        <div class="flex items-center gap-3">
+         <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">🧠</span>
+         </div>
+         <h4 class="text-xl font-bold text-white">Mental Health Crisis</h4>
+        </div>
+       </div>
+       <div class="p-6">
+        <p class="text-gray-700 mb-4"><strong>Mental Health Crisis</strong> - The increasing prevalence of mental health issues in society.</p>
+        <ul class="text-sm text-gray-600 space-y-2">
+         <li>• Rising rates of depression and anxiety</li>
+         <li>• Lack of mental health support services</li>
+         <li>• Social stigma around mental illness</li>
+         <li>• Impact on productivity and quality of life</li>
+        </ul>
+       </div>
+      </div><!-- Digital Divide -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+       <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-4">
+        <div class="flex items-center gap-3">
+         <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">💻</span>
+         </div>
+         <h4 class="text-xl font-bold text-white">Digital Divide</h4>
+        </div>
+       </div>
+       <div class="p-6">
+        <p class="text-gray-700 mb-4"><strong>Digital Divide</strong> - The gap between those who have access to modern technology and those who don't.</p>
+        <ul class="text-sm text-gray-600 space-y-2">
+         <li>• Lack of internet and digital devices</li>
+         <li>• Limited digital literacy skills</li>
+         <li>• Impact on education and employment</li>
+         <li>• Increases social inequality</li>
+        </ul>
+       </div>
+      </div><!-- Gender Inequality -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+       <div class="bg-gradient-to-r from-pink-500 to-pink-600 p-4">
+        <div class="flex items-center gap-3">
+         <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">⚖️</span>
+         </div>
+         <h4 class="text-xl font-bold text-white">Gender Inequality</h4>
+        </div>
+       </div>
+       <div class="p-6">
+        <p class="text-gray-700 mb-4"><strong>Gender Inequality</strong> - Discrimination and unequal opportunities based on gender.</p>
+        <ul class="text-sm text-gray-600 space-y-2">
+         <li>• Gender pay gap in the workplace</li>
+         <li>• Limited leadership opportunities for women</li>
+         <li>• Domestic violence and harassment</li>
+         <li>• Lack of reproductive rights and education</li>
+        </ul>
+       </div>
+      </div><!-- Aging Population -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+       <div class="bg-gradient-to-r from-indigo-500 to-indigo-600 p-4">
+        <div class="flex items-center gap-3">
+         <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">👴</span>
+         </div>
+         <h4 class="text-xl font-bold text-white">Aging Population</h4>
+        </div>
+       </div>
+       <div class="p-6">
+        <p class="text-gray-700 mb-4"><strong>Aging Population</strong> - The increasing proportion of elderly people in the population.</p>
+        <ul class="text-sm text-gray-600 space-y-2">
+         <li>• Pressure on healthcare systems</li>
+         <li>• Shortage of young workforce</li>
+         <li>• Rising elderly care costs</li>
+         <li>• Need for pension system reforms</li>
+        </ul>
+       </div>
+      </div><!-- Youth Unemployment -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+       <div class="bg-gradient-to-r from-yellow-500 to-yellow-600 p-4">
+        <div class="flex items-center gap-3">
+         <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">👨‍💼</span>
+         </div>
+         <h4 class="text-xl font-bold text-white">Youth Unemployment</h4>
+        </div>
+       </div>
+       <div class="p-6">
+        <p class="text-gray-700 mb-4"><strong>Youth Unemployment</strong> - High unemployment rates among people aged 15-24.</p>
+        <ul class="text-sm text-gray-600 space-y-2">
+         <li>• Lack of experience and skills</li>
+         <li>• Mismatch between education and job market</li>
+         <li>• Impact on economic development</li>
+         <li>• Causes social instability</li>
+        </ul>
+       </div>
+      </div><!-- Food Security -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+       <div class="bg-gradient-to-r from-teal-500 to-teal-600 p-4">
+        <div class="flex items-center gap-3">
+         <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"><span class="text-2xl">🌾</span>
+         </div>
+         <h4 class="text-xl font-bold text-white">Food Security</h4>
+        </div>
+       </div>
+       <div class="p-6">
+        <p class="text-gray-700 mb-4"><strong>Food Security</strong> - Ensuring all people have access to sufficient, safe, and nutritious food.</p>
+        <ul class="text-sm text-gray-600 space-y-2">
+         <li>• 828 million people face hunger worldwide</li>
+         <li>• Climate change affects agriculture</li>
+         <li>• Conflicts and wars cause food shortages</li>
+         <li>• Need for sustainable farming development</li>
+        </ul>
+       </div>
+      </div>
      </div>
     </div>
    </div>
@@ -1753,6 +1751,7 @@
             document.getElementById('vocabulary-section').classList.add('hidden');
             document.getElementById('reading-section').classList.add('hidden');
             document.getElementById('grammar-section').classList.add('hidden');
+            document.getElementById('social-issues-section').classList.add('hidden');
             
             // Remove active class from all tabs
             document.querySelectorAll('.tab-button').forEach(tab => {
@@ -1766,24 +1765,13 @@
             currentSection = section;
             
             if (section === 'reading') {
-                // Initialize reading section with social issues mode
-                showReadingMode('social-issues');
                 if (!readingCompleted) {
                     generateReadingQuiz();
                 }
             }
         }
 
-        // Reading mode navigation
-        function showReadingMode(mode) {
-            // Update button states
-            document.getElementById('social-issues-btn').classList.toggle('active', mode === 'social-issues');
-            document.getElementById('reading-text-btn').classList.toggle('active', mode === 'reading-text');
-            
-            // Show/hide modes
-            document.getElementById('social-issues-mode').classList.toggle('hidden', mode !== 'social-issues');
-            document.getElementById('reading-text-mode').classList.toggle('hidden', mode !== 'reading-text');
-        }
+
 
         // Reading functions
         function generateReadingQuiz() {
@@ -2083,5 +2071,5 @@
         // Initialize app when page loads
         document.addEventListener('DOMContentLoaded', initApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99746f9ac0f8a023',t:'MTc2MTkyNzE2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9974c58f4001fda4',t:'MTc2MTkzMDY4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
