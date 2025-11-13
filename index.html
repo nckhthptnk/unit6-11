@@ -68,6 +68,23 @@
             color: #92400e;
         }
         
+        .vocab-highlight {
+            background-color: #fef08a;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #92400e;
+            border: 2px solid #f59e0b;
+            box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .vocab-highlight:hover {
+            background-color: #fde047;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(245, 158, 11, 0.4);
+        }
+        
         .quiz-option {
             transition: all 0.3s;
             cursor: pointer;
@@ -522,22 +539,31 @@
       </div>
       <div id="vocab-test-container" class="space-y-6"><!-- Test questions will be generated here -->
       </div>
-      <div class="text-center mt-8"><button onclick="resetVocabTest()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200"> Làm lại bài kiểm tra </button>
+      <div class="text-center mt-8">
+       <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+        <p class="text-blue-800 font-medium">💡 <strong>Bạn hãy trả lời hết câu trắc nghiệm để hoàn thành tiến độ học nhé!</strong></p>
+       </div><button onclick="resetVocabTest()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200"> Làm lại bài kiểm tra </button>
       </div>
      </div>
     </div><!-- Reading Section -->
     <div id="reading-section" class="p-6 hidden"><!-- Reading Text Mode -->
      <div id="reading-text-mode">
       <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Bài đọc hiểu</h3>
-      <div class="bg-gray-50 rounded-lg p-8 mb-8 border-l-4 border-blue-500">
-       <div class="reading-text text-gray-800 leading-relaxed">
-        <p class="mb-6 text-justify">Teenagers often seek <u><strong>"independence"</strong></u> from <u><strong>their</strong></u> parents as they grow older, which can lead to conflicts within families. A recent study found that most parent-teen disagreements occur about daily responsibilities, social activities, and future plans rather than serious issues. <strong>[I]</strong> These conflicts are natural parts of adolescent development and can actually strengthen family relationships when handled properly.</p>
-        <p class="mb-6 text-justify">The research showed that teenagers frequently feel misunderstood when parents <u><strong>"dismiss"</strong></u> <u><strong>their</strong></u> opinions or emotions. <strong>[II]</strong> Many teens reported staying silent during family discussions to avoid arguments, even when they disagreed with decisions affecting them. <strong>[III]</strong> Parents, meanwhile, often worry about their children's safety and future success, leading them to set strict rules that teenagers may view as controlling.</p>
-        <p class="mb-6 text-justify"><strong>[IV]</strong> Experts suggest that families can manage these conflicts through open communication and mutual respect. <u><strong>"Healthy communication, trust, and problem-solving skills are key to resolving disagreements."</strong></u> When both parents and teenagers listen to each other's perspectives and work together to find solutions, conflicts can become opportunities for growth and understanding rather than sources of lasting tension.</p>
+      <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 mb-8 border-l-4 border-blue-500 shadow-lg">
+       <div class="reading-text text-gray-800 leading-relaxed text-lg">
+        <p class="mb-8 text-justify leading-loose">Social issues like <span class="vocab-highlight">poverty</span>, <span class="vocab-highlight">homelessness</span>, and <span class="vocab-highlight">unemployment</span> continue to challenge societies worldwide. These problems often create a cycle where families <span class="vocab-highlight">struggle</span> to meet basic needs, leading to increased stress and social instability. <u><strong>"Addressing these challenges"</strong></u> requires coordinated efforts from governments, <span class="vocab-highlight">non-profit organizations</span>, and communities working together. <strong>[I]</strong> Many <span class="vocab-highlight">charities</span> and volunteer groups <span class="vocab-highlight">focus on</span> providing immediate relief through food banks, shelters, and job training programs.</p>
+        <p class="mb-8 text-justify leading-loose">Mental health issues, including <span class="vocab-highlight">depression</span> and anxiety, have become increasingly prevalent, particularly among young people. <strong>[II]</strong> Healthcare systems worldwide <span class="vocab-highlight">struggle</span> to provide <span class="vocab-highlight">affordable</span> mental health services to those in need. <u><strong>"Early intervention and community support"</strong></u> are essential for preventing more serious mental health <span class="vocab-highlight">crises</span>. Social stigma often prevents people from seeking help, making it crucial to raise awareness and promote understanding.</p>
+        <p class="mb-8 text-justify leading-loose">Environmental problems like climate change and <span class="vocab-highlight">pollution</span> disproportionately affect vulnerable populations. <strong>[III]</strong> Poor communities often lack resources to <u><strong>"adapt to environmental changes"</strong></u> or relocate when necessary. Governments must <span class="vocab-highlight">invest</span> in sustainable solutions while ensuring that environmental policies don't worsen existing inequalities.</p>
+        <p class="mb-8 text-justify leading-loose"><strong>[IV]</strong> Successful social programs require long-term commitment and adequate funding to create lasting change in communities. Education plays a crucial role in breaking the cycle of <span class="vocab-highlight">poverty</span> by providing people with skills and opportunities for better employment. <span class="vocab-highlight">Non-profit organizations</span> and government agencies must work together to address root causes rather than just treating symptoms. <u><strong>"Sustainable development goals"</strong></u> can only be achieved through coordinated international <span class="vocab-highlight">efforts</span> and shared responsibility among all nations.</p>
        </div>
       </div>
       <div id="reading-quiz" class="space-y-4">
        <h4 class="text-xl font-bold text-gray-800 mb-4">Câu hỏi trắc nghiệm</h4><!-- Quiz questions will be generated here -->
+       <div class="text-center mt-8">
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+         <p class="text-blue-800 font-medium">💡 <strong>Bạn hãy trả lời hết câu trắc nghiệm để hoàn thành tiến độ học nhé!</strong></p>
+        </div>
+       </div>
       </div>
      </div>
     </div><!-- Grammar Section -->
@@ -1255,44 +1281,44 @@
         // Reading quiz questions
         const readingQuestions = [
             {
-                question: "The word \"independence\" in paragraph 1 is CLOSEST in meaning to ________________.",
-                options: ["self-reliance", "attention", "patience", "guidance"],
-                correct: 0
-            },
-            {
-                question: "What does the word \"their\" in paragraph 2 refer to?",
-                options: ["parents'", "teenagers'", "disagreements'", "teachers'"],
+                question: "The phrase \"Addressing these challenges\" in paragraph 1 is CLOSEST in meaning to ________________.",
+                options: ["Ignoring social problems", "Dealing with social issues", "Creating new difficulties", "Avoiding responsibilities"],
                 correct: 1
             },
             {
-                question: "The word \"dismiss\" in paragraph 3 is OPPOSITE in meaning to ________________.",
-                options: ["ignore", "refuse", "respect", "confuse"],
-                correct: 2
+                question: "What do \"non-profit organizations\" in paragraph 1 primarily focus on?",
+                options: ["Making money from social problems", "Providing help without seeking profit", "Competing with government agencies", "Selling services to communities"],
+                correct: 1
             },
             {
-                question: "In which paragraph does the writer explain how parents and teens can manage conflicts?",
+                question: "The phrase \"Early intervention and community support\" in paragraph 2 refers to ________________.",
+                options: ["Late treatment of mental illness", "Preventing problems before they worsen", "Expensive medical procedures", "Individual therapy sessions only"],
+                correct: 1
+            },
+            {
+                question: "In which paragraph does the writer discuss environmental impacts on vulnerable populations?",
                 options: ["Paragraph 1", "Paragraph 2", "Paragraph 3", "Paragraph 4"],
                 correct: 2
             },
             {
-                question: "Where in the passage does the following sentence best fit? \"This can hide deeper emotions and prevent healthy communication.\"",
+                question: "Where in the passage does the following sentence best fit? \"This creates additional barriers to accessing essential services.\"",
                 options: ["[I]", "[II]", "[III]", "[IV]"],
-                correct: 2
+                correct: 1
             },
             {
                 question: "Which of the following is TRUE according to the passage?",
-                options: ["Conflicts between parents and teens always harm relationships.", "Most parent-teen arguments are about money and school grades.", "The study showed fathers argue more with teens than mothers.", "Teens in the study often kept silent instead of expressing opinions."],
-                correct: 3
+                options: ["Mental health issues only affect elderly people.", "Environmental problems equally impact all social classes.", "Social stigma prevents people from seeking mental health help.", "Charities work independently without community involvement."],
+                correct: 2
             },
             {
-                question: "Which of the following best paraphrases the underlined sentence in paragraph 3? \"Healthy communication, trust, and problem-solving skills are key to resolving disagreements.\"",
-                options: ["Understanding, honesty, and cooperation help families handle conflicts effectively.", "Not until parents are healthy that unnecessary arguments can be solved.", "Disagreements can be solved only if teenagers completely obey their parents.", "Good communication makes all family problems disappear immediately."],
-                correct: 0
+                question: "Which of the following best paraphrases the underlined phrase \"adapt to environmental changes\" in paragraph 3?",
+                options: ["Ignore climate problems completely", "Adjust to new environmental conditions", "Move to different countries permanently", "Stop all industrial activities immediately"],
+                correct: 1
             },
             {
                 question: "Which can be inferred from the passage?",
-                options: ["Parents should try to stop all conflicts between themselves and their children.", "School and teachers play insignificant roles in helping solve family conflicts.", "Teenagers' emotional problems are mainly caused by their school performance.", "Open and respectful communication can turn conflicts into chances for growth."],
-                correct: 3
+                options: ["Social problems can be solved quickly with enough money.", "Environmental policies should prioritize economic growth over equality.", "Successful social programs require sustained effort and resources.", "Mental health issues are less important than physical problems."],
+                correct: 2
             }
         ];
 
@@ -2269,5 +2295,5 @@
         // Initialize app when page loads
         document.addEventListener('DOMContentLoaded', initApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99e0010a806d40d9',t:'MTc2MzA1NTEwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99e01cf473e140d9',t:'MTc2MzA1NjI0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
