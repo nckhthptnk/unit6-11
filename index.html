@@ -529,13 +529,11 @@
     <div id="reading-section" class="p-6 hidden"><!-- Reading Text Mode -->
      <div id="reading-text-mode">
       <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Bài đọc hiểu</h3>
-      <div class="bg-gray-50 rounded-lg p-6 mb-8">
-       <div class="reading-text text-gray-800">
-        <p class="mb-4">Last month, our local <span class="highlight">charity</span> launched a major <span class="highlight">campaign</span> to address growing social issues in the community. The <span class="highlight">organization</span> decided to <span class="highlight">focus on</span> helping <span class="highlight">homeless</span> families who had been living in temporary <span class="highlight">shelters</span>. Many of these families <span class="highlight">struggle</span> with <span class="highlight">poverty</span> and cannot find <span class="highlight">affordable</span> housing due to rising costs and limited income opportunities.</p>
-        <p class="mb-4">The <span class="highlight">volunteers</span> worked tirelessly to <span class="highlight">collect</span> donations from local <span class="highlight">citizens</span>. They gathered warm <span class="highlight">blankets</span>, food supplies, and <span class="highlight">cash</span> contributions to support the cause. The <span class="highlight">non-profit</span> group also organized <span class="highlight">training</span> programs to help unemployed individuals develop new skills. <span class="highlight">Consequently</span>, many participants found better job opportunities and could <span class="highlight">improve</span> their living conditions.</p>
-        <p class="mb-4">However, the community still faces serious challenges. <span class="highlight">Crime</span> rates have increased in certain areas, and some people <span class="highlight">steal</span> basic necessities because they cannot <span class="highlight">afford</span> them. <span class="highlight">Disease</span> outbreaks, including <span class="highlight">tuberculosis</span> and <span class="highlight">malaria</span>, pose <span class="highlight">life-threatening</span> risks to vulnerable populations. The local <span class="highlight">healthcare</span> system struggles to <span class="highlight">deal with</span> these problems on such a large <span class="highlight">scale</span>.</p>
-        <p class="mb-4">Despite these <span class="highlight">difficulties</span>, the community remains hopeful. People from different backgrounds, regardless of their <span class="highlight">nationality</span> or <span class="highlight">accent</span>, work together with mutual <span class="highlight">respect</span>. The government has promised to <span class="highlight">invest</span> more resources in education and job creation programs. Local leaders <span class="highlight">recommend</span> that everyone should <span class="highlight">volunteer</span> their time or <span class="highlight">donate</span> to help <span class="highlight">solve</span> these pressing social issues.</p>
-        <p>Through collective <span class="highlight">effort</span> and <span class="highlight">cooperation</span>, the community believes they can create positive change. The <span class="highlight">movement</span> continues to grow as more people <span class="highlight">recognise</span> the importance of helping those in need and building a more equitable society for everyone.</p>
+      <div class="bg-gray-50 rounded-lg p-8 mb-8 border-l-4 border-blue-500">
+       <div class="reading-text text-gray-800 leading-relaxed">
+        <p class="mb-6 text-justify">Teenagers often seek <u><strong>"independence"</strong></u> from <u><strong>their</strong></u> parents as they grow older, which can lead to conflicts within families. A recent study found that most parent-teen disagreements occur about daily responsibilities, social activities, and future plans rather than serious issues. <strong>[I]</strong> These conflicts are natural parts of adolescent development and can actually strengthen family relationships when handled properly.</p>
+        <p class="mb-6 text-justify">The research showed that teenagers frequently feel misunderstood when parents <u><strong>"dismiss"</strong></u> <u><strong>their</strong></u> opinions or emotions. <strong>[II]</strong> Many teens reported staying silent during family discussions to avoid arguments, even when they disagreed with decisions affecting them. <strong>[III]</strong> Parents, meanwhile, often worry about their children's safety and future success, leading them to set strict rules that teenagers may view as controlling.</p>
+        <p class="mb-6 text-justify"><strong>[IV]</strong> Experts suggest that families can manage these conflicts through open communication and mutual respect. <u><strong>"Healthy communication, trust, and problem-solving skills are key to resolving disagreements."</strong></u> When both parents and teenagers listen to each other's perspectives and work together to find solutions, conflicts can become opportunities for growth and understanding rather than sources of lasting tension.</p>
        </div>
       </div>
       <div id="reading-quiz" class="space-y-4">
@@ -1257,29 +1255,44 @@
         // Reading quiz questions
         const readingQuestions = [
             {
-                question: "What did the local charity decide to focus on?",
-                options: ["Building new hospitals", "Helping homeless families", "Creating job training only", "Fighting crime"],
+                question: "The word \"independence\" in paragraph 1 is CLOSEST in meaning to ________________.",
+                options: ["self-reliance", "attention", "patience", "guidance"],
+                correct: 0
+            },
+            {
+                question: "What does the word \"their\" in paragraph 2 refer to?",
+                options: ["parents'", "teenagers'", "disagreements'", "teachers'"],
                 correct: 1
             },
             {
-                question: "What did volunteers collect to support the cause?",
-                options: ["Only money", "Blankets, food, and cash", "Just clothing", "Medical supplies only"],
-                correct: 1
-            },
-            {
-                question: "Which diseases are mentioned as life-threatening risks?",
-                options: ["Flu and cold", "Tuberculosis and malaria", "Heart disease and cancer", "Diabetes and obesity"],
-                correct: 1
-            },
-            {
-                question: "What has the government promised to do?",
-                options: ["Build more shelters", "Reduce taxes", "Invest more in education and job programs", "Increase police presence"],
+                question: "The word \"dismiss\" in paragraph 3 is OPPOSITE in meaning to ________________.",
+                options: ["ignore", "refuse", "respect", "confuse"],
                 correct: 2
             },
             {
-                question: "According to the passage, what helps create positive change?",
-                options: ["Government funding only", "Individual donations", "Collective effort and cooperation", "New technology"],
+                question: "In which paragraph does the writer explain how parents and teens can manage conflicts?",
+                options: ["Paragraph 1", "Paragraph 2", "Paragraph 3", "Paragraph 4"],
                 correct: 2
+            },
+            {
+                question: "Where in the passage does the following sentence best fit? \"This can hide deeper emotions and prevent healthy communication.\"",
+                options: ["[I]", "[II]", "[III]", "[IV]"],
+                correct: 2
+            },
+            {
+                question: "Which of the following is TRUE according to the passage?",
+                options: ["Conflicts between parents and teens always harm relationships.", "Most parent-teen arguments are about money and school grades.", "The study showed fathers argue more with teens than mothers.", "Teens in the study often kept silent instead of expressing opinions."],
+                correct: 3
+            },
+            {
+                question: "Which of the following best paraphrases the underlined sentence in paragraph 3? \"Healthy communication, trust, and problem-solving skills are key to resolving disagreements.\"",
+                options: ["Understanding, honesty, and cooperation help families handle conflicts effectively.", "Not until parents are healthy that unnecessary arguments can be solved.", "Disagreements can be solved only if teenagers completely obey their parents.", "Good communication makes all family problems disappear immediately."],
+                correct: 0
+            },
+            {
+                question: "Which can be inferred from the passage?",
+                options: ["Parents should try to stop all conflicts between themselves and their children.", "School and teachers play insignificant roles in helping solve family conflicts.", "Teenagers' emotional problems are mainly caused by their school performance.", "Open and respectful communication can turn conflicts into chances for growth."],
+                correct: 3
             }
         ];
 
@@ -1451,6 +1464,7 @@
         let vocabTestQuestions = [];
         let vocabTestScore = 0;
         let vocabTestAnswered = 0;
+        let currentVocabTestQuestion = 0;
         let vocabLearningStarted = false;
         let learnedCards = new Set();
 
@@ -1602,6 +1616,7 @@
             vocabTestQuestions = [];
             vocabTestScore = 0;
             vocabTestAnswered = 0;
+            currentVocabTestQuestion = 0;
             
             // Create questions for each vocabulary word
             vocabularyData.forEach((word, index) => {
@@ -1619,7 +1634,10 @@
                     question: `"${word.word}" có nghĩa là gì?`,
                     options: options1,
                     correct: correctIndex1,
-                    type: 'word-to-meaning'
+                    type: 'word-to-meaning',
+                    word: word.word,
+                    correctAnswer: word.meaning,
+                    explanation: `"${word.word}" ${word.pronunciation} ${word.type} có nghĩa là "${word.meaning}". Ví dụ: ${word.example.replace(/<[^>]*>/g, '')}`
                 });
                 
                 // Question 2: Meaning to word (for some words to reach 67 questions)
@@ -1637,7 +1655,10 @@
                         question: `Từ nào có nghĩa là "${word.meaning}"?`,
                         options: options2,
                         correct: correctIndex2,
-                        type: 'meaning-to-word'
+                        type: 'meaning-to-word',
+                        word: word.word,
+                        correctAnswer: word.word,
+                        explanation: `Từ "${word.word}" ${word.pronunciation} ${word.type} có nghĩa là "${word.meaning}". Ví dụ: ${word.example.replace(/<[^>]*>/g, '')}`
                     });
                 }
             });
@@ -1646,52 +1667,79 @@
             vocabTestQuestions = vocabTestQuestions.sort(() => Math.random() - 0.5).slice(0, 67);
             
             renderVocabTest();
-            updateVocabTestProgress();
         }
 
         function renderVocabTest() {
             const container = document.getElementById('vocab-test-container');
-            container.innerHTML = '';
-            
-            vocabTestQuestions.forEach((question, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'vocab-test-question bg-white rounded-lg shadow-sm border p-6';
-                questionDiv.innerHTML = `
+            container.innerHTML = `
+                <div class="vocab-test-question-container bg-white rounded-lg shadow-lg border p-6 mb-6">
                     <div class="flex items-start gap-4">
-                        <div class="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm">
-                            ${index + 1}
+                        <div class="flex-shrink-0 w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold">
+                            <span id="vocab-test-question-number">1</span>
                         </div>
                         <div class="flex-1">
-                            <p class="font-semibold text-gray-800 mb-4">${question.question}</p>
-                            <div class="space-y-3">
-                                ${question.options.map((option, optIndex) => `
-                                    <button onclick="selectVocabTestAnswer(${index}, ${optIndex})" 
-                                            class="vocab-test-option w-full text-left p-4 bg-gray-50 hover:bg-gray-100 rounded-lg transition-all duration-200"
-                                            id="vocab-test-option-${index}-${optIndex}">
-                                        <span class="font-medium text-blue-600 mr-3">${String.fromCharCode(65 + optIndex)}.</span>
-                                        ${option}
-                                    </button>
-                                `).join('')}
-                            </div>
-                            <div id="vocab-test-result-${index}" class="mt-4 hidden">
-                                <div class="p-3 rounded-lg">
-                                    <p class="font-medium"></p>
-                                </div>
+                            <p id="vocab-test-question-text" class="font-semibold text-gray-800 mb-4"></p>
+                            <div id="vocab-test-options" class="space-y-2"></div>
+                            <div id="vocab-test-explanation" class="mt-4 p-4 bg-blue-50 rounded-lg hidden">
+                                <p class="text-sm text-blue-800"></p>
                             </div>
                         </div>
                     </div>
-                `;
-                container.appendChild(questionDiv);
-            });
+                </div>
+                
+                <div class="flex justify-center items-center gap-4">
+                    <button onclick="previousVocabTestQuestion()" id="vocab-test-prev-btn" class="control-button bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        ← Câu trước
+                    </button>
+                    <button onclick="nextVocabTestQuestion()" id="vocab-test-next-btn" class="control-button bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hidden">
+                        Câu tiếp →
+                    </button>
+                    <button onclick="resetVocabTest()" id="vocab-test-reset-btn" class="control-button bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hidden">
+                        Làm lại
+                    </button>
+                </div>
+            `;
+            
+            loadVocabTestQuestion();
         }
 
-        function selectVocabTestAnswer(questionIndex, optionIndex) {
-            const question = vocabTestQuestions[questionIndex];
+        function loadVocabTestQuestion() {
+            const question = vocabTestQuestions[currentVocabTestQuestion];
+            
+            document.getElementById('vocab-test-question-number').textContent = currentVocabTestQuestion + 1;
+            document.getElementById('vocab-test-question-text').textContent = question.question;
+            document.getElementById('test-current').textContent = currentVocabTestQuestion + 1;
+            document.getElementById('test-total').textContent = vocabTestQuestions.length;
+            
+            const optionsContainer = document.getElementById('vocab-test-options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'vocab-test-option w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-all duration-200';
+                button.innerHTML = `<span class="font-medium text-blue-600 mr-3">${String.fromCharCode(65 + index)}.</span>${option}`;
+                button.onclick = () => selectVocabTestAnswer(index);
+                button.id = `vocab-test-current-option-${index}`;
+                optionsContainer.appendChild(button);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('vocab-test-prev-btn').disabled = currentVocabTestQuestion === 0;
+            document.getElementById('vocab-test-explanation').classList.add('hidden');
+            
+            // Update progress bar
+            const progressPercent = ((currentVocabTestQuestion + 1) / vocabTestQuestions.length) * 100;
+            document.getElementById('test-progress-bar').style.width = progressPercent + '%';
+        }
+
+        function selectVocabTestAnswer(optionIndex) {
+            const question = vocabTestQuestions[currentVocabTestQuestion];
             const isCorrect = optionIndex === question.correct;
             
-            // Disable all options for this question
+            // Disable all options
             for (let i = 0; i < question.options.length; i++) {
-                const option = document.getElementById(`vocab-test-option-${questionIndex}-${i}`);
+                const option = document.getElementById(`vocab-test-current-option-${i}`);
+                option.disabled = true;
                 option.classList.add('disabled');
                 option.style.cursor = 'not-allowed';
                 
@@ -1702,44 +1750,60 @@
                 }
             }
             
-            // Show result
-            const resultDiv = document.getElementById(`vocab-test-result-${questionIndex}`);
-            const resultContent = resultDiv.querySelector('p');
-            resultDiv.classList.remove('hidden');
+            // Show explanation
+            const explanationDiv = document.getElementById('vocab-test-explanation');
+            const explanationText = explanationDiv.querySelector('p');
             
             if (isCorrect) {
                 vocabTestScore++;
-                resultDiv.querySelector('div').className = 'p-3 rounded-lg bg-green-100 border border-green-300';
-                resultContent.textContent = '✓ Chính xác!';
-                resultContent.className = 'font-medium text-green-700';
+                explanationText.textContent = '✅ Chính xác! ' + question.explanation;
+                explanationDiv.className = 'mt-4 p-4 bg-green-50 rounded-lg';
+                explanationText.className = 'text-sm text-green-800';
                 playSound('correct');
             } else {
-                resultDiv.querySelector('div').className = 'p-3 rounded-lg bg-red-100 border border-red-300';
-                resultContent.textContent = `✗ Sai rồi! Đáp án đúng là: ${String.fromCharCode(65 + question.correct)}. ${question.options[question.correct]}`;
-                resultContent.className = 'font-medium text-red-700';
+                explanationText.textContent = '❌ Sai rồi! Đáp án đúng là: ' + question.correctAnswer + '. ' + question.explanation;
+                explanationDiv.className = 'mt-4 p-4 bg-red-50 rounded-lg';
+                explanationText.className = 'text-sm text-red-800';
                 playSound('incorrect');
             }
             
-            vocabTestAnswered++;
-            updateVocabTestProgress();
+            explanationDiv.classList.remove('hidden');
             
-            // Save progress
-            if (vocabTestAnswered === vocabTestQuestions.length) {
+            // Update score display
+            document.getElementById('test-score').textContent = vocabTestScore;
+            
+            // Show next button or reset button
+            if (currentVocabTestQuestion < vocabTestQuestions.length - 1) {
+                document.getElementById('vocab-test-next-btn').classList.remove('hidden');
+            } else {
+                document.getElementById('vocab-test-reset-btn').classList.remove('hidden');
                 saveProgress('vocabulary_test', 'completed', true, vocabTestScore);
             }
         }
 
+        function nextVocabTestQuestion() {
+            if (currentVocabTestQuestion < vocabTestQuestions.length - 1) {
+                currentVocabTestQuestion++;
+                loadVocabTestQuestion();
+                document.getElementById('vocab-test-next-btn').classList.add('hidden');
+            }
+        }
+
+        function previousVocabTestQuestion() {
+            if (currentVocabTestQuestion > 0) {
+                currentVocabTestQuestion--;
+                loadVocabTestQuestion();
+                document.getElementById('vocab-test-next-btn').classList.add('hidden');
+                document.getElementById('vocab-test-reset-btn').classList.add('hidden');
+            }
+        }
+
         function updateVocabTestProgress() {
-            const progressPercent = (vocabTestAnswered / vocabTestQuestions.length) * 100;
-            document.getElementById('test-progress-bar').style.width = progressPercent + '%';
-            document.getElementById('test-current').textContent = vocabTestAnswered;
-            document.getElementById('test-total').textContent = vocabTestQuestions.length;
-            document.getElementById('test-score').textContent = vocabTestScore;
-            document.getElementById('test-max-score').textContent = vocabTestQuestions.length;
+            // This function is now handled in loadVocabTestQuestion
         }
 
         function resetVocabTest() {
-            vocabTestQuestions = [];
+            currentVocabTestQuestion = 0;
             vocabTestScore = 0;
             vocabTestAnswered = 0;
             generateVocabTest();
@@ -1861,42 +1925,89 @@
             grammarQuizSection.classList.toggle('hidden');
             
             // Generate quiz if it's being shown and hasn't been generated yet
-            if (!grammarQuizSection.classList.contains('hidden') && !grammarQuizSection.querySelector('.mb-6')) {
+            if (!grammarQuizSection.classList.contains('hidden') && !grammarQuizSection.querySelector('.grammar-question-container')) {
                 generateGrammarQuiz();
             }
         }
 
         function generateGrammarQuiz() {
             const quizContainer = document.getElementById('grammar-quiz-content');
-            quizContainer.innerHTML = '';
-            
-            grammarQuestions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'mb-6 p-4 bg-white rounded-lg shadow-sm border';
-                questionDiv.innerHTML = `
-                    <p class="font-semibold text-gray-800 mb-3">${index + 1}. ${q.question}</p>
-                    <div class="space-y-2">
-                        ${q.options.map((option, optIndex) => `
-                            <button onclick="selectGrammarAnswer(${index}, ${optIndex})" 
-                                    class="quiz-option w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-all duration-200"
-                                    id="grammar-option-${index}-${optIndex}">
-                                ${String.fromCharCode(65 + optIndex)}. ${option}
-                            </button>
-                        `).join('')}
+            quizContainer.innerHTML = `
+                <div class="text-center mb-6">
+                    <div class="bg-gray-200 rounded-full h-3 w-full max-w-md mx-auto mb-4">
+                        <div id="grammar-progress-bar" class="bg-purple-600 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
                     </div>
-                `;
-                quizContainer.appendChild(questionDiv);
-            });
+                    <p class="text-sm text-gray-600">
+                        Câu <span id="grammar-current">1</span> / <span id="grammar-total">${grammarQuestions.length}</span>
+                        | Điểm: <span id="grammar-score">0</span>/${grammarQuestions.length}
+                    </p>
+                </div>
+                
+                <div class="grammar-question-container bg-white rounded-lg shadow-lg border p-6 mb-6">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold">
+                            <span id="grammar-question-number">1</span>
+                        </div>
+                        <div class="flex-1">
+                            <p id="grammar-question-text" class="font-semibold text-gray-800 mb-4"></p>
+                            <div id="grammar-options" class="space-y-2"></div>
+                            <div id="grammar-explanation" class="mt-4 p-4 bg-blue-50 rounded-lg hidden">
+                                <p class="text-sm text-blue-800"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center items-center gap-4">
+                    <button onclick="previousGrammarQuestion()" id="grammar-prev-btn" class="control-button bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        ← Câu trước
+                    </button>
+                    <button onclick="nextGrammarQuestion()" id="grammar-next-btn" class="control-button bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold hidden">
+                        Câu tiếp →
+                    </button>
+                    <button onclick="resetGrammarQuiz()" id="grammar-reset-btn" class="control-button bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hidden">
+                        Làm lại
+                    </button>
+                </div>
+            `;
+            
+            loadGrammarQuestion();
         }
 
-        function selectGrammarAnswer(questionIndex, optionIndex) {
-            const question = grammarQuestions[questionIndex];
+        function loadGrammarQuestion() {
+            const question = grammarQuestions[currentGrammarQuestion];
+            
+            document.getElementById('grammar-question-number').textContent = currentGrammarQuestion + 1;
+            document.getElementById('grammar-question-text').textContent = question.question;
+            document.getElementById('grammar-current').textContent = currentGrammarQuestion + 1;
+            document.getElementById('grammar-total').textContent = grammarQuestions.length;
+            
+            const optionsContainer = document.getElementById('grammar-options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'grammar-quiz-option w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-all duration-200';
+                button.innerHTML = `<span class="font-medium text-purple-600 mr-3">${String.fromCharCode(65 + index)}.</span>${option}`;
+                button.onclick = () => selectGrammarAnswer(index);
+                button.id = `grammar-current-option-${index}`;
+                optionsContainer.appendChild(button);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('grammar-prev-btn').disabled = currentGrammarQuestion === 0;
+            document.getElementById('grammar-explanation').classList.add('hidden');
+        }
+
+        function selectGrammarAnswer(optionIndex) {
+            const question = grammarQuestions[currentGrammarQuestion];
             const isCorrect = optionIndex === question.correct;
             
-            // Disable all options for this question
+            // Disable all options
             for (let i = 0; i < question.options.length; i++) {
-                const option = document.getElementById(`grammar-option-${questionIndex}-${i}`);
+                const option = document.getElementById(`grammar-current-option-${i}`);
                 option.disabled = true;
+                option.classList.add('disabled');
                 option.style.cursor = 'not-allowed';
                 
                 if (i === question.correct) {
@@ -1906,27 +2017,114 @@
                 }
             }
             
+            // Show explanation
+            const explanationDiv = document.getElementById('grammar-explanation');
+            const explanationText = explanationDiv.querySelector('p');
+            
             if (isCorrect) {
                 grammarScore++;
+                explanationText.textContent = '✅ Chính xác! ' + getGrammarExplanation(currentGrammarQuestion);
+                explanationDiv.className = 'mt-4 p-4 bg-green-50 rounded-lg';
+                explanationText.className = 'text-sm text-green-800';
                 playSound('correct');
             } else {
+                explanationText.textContent = '❌ Sai rồi! Đáp án đúng là: ' + question.options[question.correct] + '. ' + getGrammarExplanation(currentGrammarQuestion);
+                explanationDiv.className = 'mt-4 p-4 bg-red-50 rounded-lg';
+                explanationText.className = 'text-sm text-red-800';
                 playSound('incorrect');
             }
             
-            // Check if all questions are answered
-            setTimeout(() => {
-                checkGrammarCompletion();
-            }, 1000);
-        }
-
-        function checkGrammarCompletion() {
-            const answeredQuestions = document.querySelectorAll('#grammar-quiz .quiz-option.correct, #grammar-quiz .quiz-option.incorrect').length;
-            if (answeredQuestions >= grammarQuestions.length) {
+            explanationDiv.classList.remove('hidden');
+            
+            // Update progress
+            updateGrammarProgress();
+            
+            // Show next button or reset button
+            if (currentGrammarQuestion < grammarQuestions.length - 1) {
+                document.getElementById('grammar-next-btn').classList.remove('hidden');
+            } else {
+                document.getElementById('grammar-reset-btn').classList.remove('hidden');
                 grammarCompleted = true;
                 saveProgress('grammar', 'completed', true, grammarScore);
                 updateProgress();
             }
         }
+
+        function getGrammarExplanation(questionIndex) {
+            const explanations = [
+                "Sau 'enjoy' ta dùng V-ing (gerund).",
+                "Câu khẳng định + question tag phủ định.",
+                "Gerund làm chủ ngữ trong câu.",
+                "Câu phủ định + question tag khẳng định.",
+                "Sau giới từ 'in' ta dùng V-ing.",
+                "Với động từ khuyết thiếu 'can', question tag là 'can't'.",
+                "Gerund làm chủ ngữ trong câu.",
+                "Với 'won't' (will not), question tag là 'will'.",
+                "Sau 'avoid' ta dùng V-ing.",
+                "Với 'is', question tag là 'isn't'.",
+                "Sau 'suggest' ta dùng V-ing.",
+                "Với 'aren't', question tag là 'are'.",
+                "Gerund làm chủ ngữ, không dùng 'to infinitive'.",
+                "Với 'have finished', question tag là 'haven't'.",
+                "Sau 'finish' ta dùng V-ing.",
+                "Với 'will', question tag là 'won't'.",
+                "Sau 'mind' ta dùng V-ing.",
+                "Với 'didn't', question tag là 'did'.",
+                "Gerund làm chủ ngữ trong câu.",
+                "Với 'should', question tag là 'shouldn't'.",
+                "Sau 'keep' ta dùng V-ing.",
+                "Với 'are', question tag là 'aren't'.",
+                "Sau 'enjoy' ta dùng V-ing, với giới từ 'to'.",
+                "Với 'wasn't', question tag là 'was'.",
+                "Gerund làm chủ ngữ trong câu.",
+                "Với 'could', question tag là 'couldn't'.",
+                "Sau tính từ sở hữu 'your' ta dùng V-ing.",
+                "Với 'has been', question tag là 'hasn't'.",
+                "Sau 'stop' ta dùng V-ing (dừng hành động đang làm).",
+                "Với 'wouldn't', question tag là 'would'."
+            ];
+            return explanations[questionIndex] || "Hãy ôn lại quy tắc ngữ pháp.";
+        }
+
+        function nextGrammarQuestion() {
+            if (currentGrammarQuestion < grammarQuestions.length - 1) {
+                currentGrammarQuestion++;
+                loadGrammarQuestion();
+                document.getElementById('grammar-next-btn').classList.add('hidden');
+            }
+        }
+
+        function previousGrammarQuestion() {
+            if (currentGrammarQuestion > 0) {
+                currentGrammarQuestion--;
+                loadGrammarQuestion();
+                document.getElementById('grammar-next-btn').classList.add('hidden');
+                document.getElementById('grammar-reset-btn').classList.add('hidden');
+            }
+        }
+
+        function updateGrammarProgress() {
+            const answeredQuestions = currentGrammarQuestion + 1;
+            const progressPercent = (answeredQuestions / grammarQuestions.length) * 100;
+            document.getElementById('grammar-progress-bar').style.width = progressPercent + '%';
+            document.getElementById('grammar-score').textContent = grammarScore;
+        }
+
+        function resetGrammarQuiz() {
+            currentGrammarQuestion = 0;
+            grammarScore = 0;
+            grammarCompleted = false;
+            loadGrammarQuestion();
+            document.getElementById('grammar-next-btn').classList.add('hidden');
+            document.getElementById('grammar-reset-btn').classList.add('hidden');
+            updateGrammarProgress();
+        }
+
+        function checkGrammarCompletion() {
+            // This function is no longer needed as completion is handled in selectGrammarAnswer
+        }
+
+
 
         // Progress functions
         async function saveProgress(section, itemId, completed, score = 0) {
@@ -2071,5 +2269,5 @@
         // Initialize app when page loads
         document.addEventListener('DOMContentLoaded', initApp);
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9974c58f4001fda4',t:'MTc2MTkzMDY4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99e0010a806d40d9',t:'MTc2MzA1NTEwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
